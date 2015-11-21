@@ -160,7 +160,7 @@ namespace src.Controllers.Api
 
                 var map = await this.db.Maps.FindAsync(model.MapId);
 
-                if (!this.IsPointInPolygon(null, model.Long, model.Lat))
+                if (!this.IsPointInPolygon(map.Coordinates.ToList(), model.Long, model.Lat))
                 {
                     new GcmProvider().CreateNotification(new PushNotificationData
                     {
