@@ -1,6 +1,7 @@
 package com.fbrd.rsc2015.domain.interactor;
 
 import com.example.loginmodule.model.bus.ZET;
+import com.example.loginmodule.util.ServiceUtil;
 import com.fbrd.rsc2015.domain.model.event.FeedFailureEvent;
 import com.fbrd.rsc2015.domain.model.event.FeedSuccessEvent;
 import com.fbrd.rsc2015.domain.model.response.FeedItem;
@@ -42,7 +43,7 @@ public class NotificationInteractor {
                 .subscribe(result->{
                     ZET.post(new FeedSuccessEvent(result));
                 }, error->{
-                    ZET.post(new FeedFailureEvent(error));
+                    ZET.post(new FeedFailureEvent(ServiceUtil.getStatusCode(error)));
                 });
     }
 
