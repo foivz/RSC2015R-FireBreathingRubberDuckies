@@ -22,7 +22,9 @@ namespace src.Models.Api
         public string Email { get; set; }
         [Required]
         public string Avatar { get; set; }
+        public bool Killed { get; set; }
         public bool Enabled { get; set; }
+        public string NFC { get; set; }
         public string RegistrationId { get; set; }
     }
 }

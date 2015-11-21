@@ -34,12 +34,13 @@ namespace src.Controllers.Api
             return this.NotFound(new ApiResponse(404, id));
         }
 
-        [HttpPost, Route(""), Authorize(Roles="admin,superadmin")]
+        [HttpPost, Route(""), Authorize(Roles = "admin,superadmin")]
         public async Task<IHttpActionResult> CreateGame(CreateGameApiModel model)
         {
             if (ModelState.IsValid && model != null)
             {
-                var mapped = new Game(){
+                var mapped = new Game()
+                {
                     ChallengerOne = await this.db.Teams.FindAsync(model.ChallengerOne),
                     ChallengerTwo = await this.db.Teams.FindAsync(model.ChallengerTwo),
                     Length = model.Length,
@@ -69,6 +70,42 @@ namespace src.Controllers.Api
                 if (result.Succeeded)
                     return this.Ok(new ApiResponse(200, Mapper.Map<UserApiModel>(this.CurrentUser)));
                 return this.InternalServerError(new ApiResponse(500, Mapper.Map<UserApiModel>(this.CurrentUser)));
+            }
+            return this.BadRequest(new ApiResponse(400, model));
+        }
+
+        [HttpPut, Route("nfc"), Authorize]
+        public async Task<IHttpActionResult> SetNFC(PlayerMarkedApiModel model)
+        {
+            if (ModelState.IsValid && model != null)
+            {
+                this.CurrentUser.NFC = model.NFC;
+                this.CurrentUser.Killed = false;
+
+                var result = await this.userManager.UpdateAsync(this.CurrentUser);
+
+                if (result.Succeeded)
+                    return this.Ok(new ApiResponse(200, Mapper.Map<UserApiModel>(this.CurrentUser)));
+                return this.InternalServerError(new ApiResponse(500, model));
+            }
+            return this.BadRequest(new ApiResponse(400, model));
+        }
+
+        [HttpPut, Route("marked"), Authorize]
+        public async Task<IHttpActionResult> PlayerMarked(PlayerMarkedApiModel model)
+        {
+            if (ModelState.IsValid && model != null)
+            {
+                if (this.CurrentUser.NFC.Equals(model.NFC))
+                {
+                    this.CurrentUser.Killed = true;
+
+                    var result = await this.userManager.UpdateAsync(this.CurrentUser);
+
+                    if (result.Succeeded)
+                        return this.Ok(new ApiResponse(200, Mapper.Map<UserApiModel>(this.CurrentUser)));
+                    return this.InternalServerError(new ApiResponse(500, model));
+                }
             }
             return this.BadRequest(new ApiResponse(400, model));
         }

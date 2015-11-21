@@ -67,6 +67,8 @@ namespace src.Controllers.Api
 
                 if (!team.Users.Contains(member) && await this.userManager.IsInRoleAsync(model.UserId, "user"))
                 {
+                    member.Killed = false;
+
                     team.Users.Add(member);
 
                     await this.db.SaveChangesAsync();

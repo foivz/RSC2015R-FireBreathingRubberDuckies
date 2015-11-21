@@ -342,12 +342,25 @@
     <Compile Include="Migrations\201511211441387_RTCRoutes.Designer.cs">
       <DependentUpon>201511211441387_RTCRoutes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511211534402_KilledProperty.cs" />
+    <Compile Include="Migrations\201511211534402_KilledProperty.Designer.cs">
+      <DependentUpon>201511211534402_KilledProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511211543480_KilledFlag.cs" />
+    <Compile Include="Migrations\201511211543480_KilledFlag.Designer.cs">
+      <DependentUpon>201511211543480_KilledFlag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511211604583_NFCOnUserModel.cs" />
+    <Compile Include="Migrations\201511211604583_NFCOnUserModel.Designer.cs">
+      <DependentUpon>201511211604583_NFCOnUserModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Api\AddMemberApiModel.cs" />
     <Compile Include="Models\Api\CreateGameApiModel.cs" />
     <Compile Include="Models\Api\CreateUserApiModel.cs" />
     <Compile Include="Controllers\Api\NotificationApiController.cs" />
     <Compile Include="Models\Api\GameApiModel.cs" />
     <Compile Include="Models\Api\LocationApiModel.cs" />
+    <Compile Include="Models\Api\PlayerMarkedApiModel.cs" />
     <Compile Include="Models\Api\RoleApiModel.cs" />
     <Compile Include="Models\Api\TeamApiModel.cs" />
     <Compile Include="Models\Api\UserApiModel.cs" />
@@ -440,6 +453,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511211441387_RTCRoutes.resx">
       <DependentUpon>201511211441387_RTCRoutes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211534402_KilledProperty.resx">
+      <DependentUpon>201511211534402_KilledProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211543480_KilledFlag.resx">
+      <DependentUpon>201511211543480_KilledFlag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211604583_NFCOnUserModel.resx">
+      <DependentUpon>201511211604583_NFCOnUserModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

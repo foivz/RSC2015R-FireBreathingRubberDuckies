@@ -14,6 +14,8 @@ namespace src.Models
             this.Games = new HashSet<Game>();
         }
         public string Name { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<Game> Games { get; set; }
     }

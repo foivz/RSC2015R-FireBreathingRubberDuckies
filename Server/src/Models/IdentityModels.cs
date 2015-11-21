@@ -21,7 +21,9 @@ namespace src.Models
         public double Longitude { get; set; }
         public string RegistrationId { get; set; }
         public string Avatar { get; set; }
+        public bool Killed { get; set; }
         public bool Enabled { get; set; }
+        public string NFC { get; set; }
         public User()
         {
             this.Triggers().Inserting += (entry) => { entry.Entity.Created = DateTime.Now; };
