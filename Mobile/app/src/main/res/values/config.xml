@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="facebook_app_id">916889011691947</string>
+    <integer name="splash_time">2000</integer>
 </resources>

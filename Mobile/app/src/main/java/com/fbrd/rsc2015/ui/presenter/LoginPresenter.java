@@ -57,16 +57,12 @@ public class LoginPresenter {
 
     @Subscribe
     public void onLoginSuccess(LoginSuccessEvent event) {
-        preferences.storeUser(event.getUser())
+        preferences.storeUserAsync(event.getUser(), event.getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(success -> {
                     view.dismissLoading();
-                    if (success) {
-                        view.proceed();
-                    } else {
-                        view.showError("An error has occured");
-                    }
+                    view.proceed();
                 });
     }
 
