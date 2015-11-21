@@ -1,5 +1,8 @@
 package com.fbrd.rsc2015.domain.service;
 
+import com.fbrd.rsc2015.app.di.component.DaggerServiceComponent;
+import com.fbrd.rsc2015.app.di.module.ServiceModule;
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -20,6 +23,9 @@ public class BaseService extends Service {
     public void onCreate() {
         super.onCreate();
 
-
+        DaggerServiceComponent.builder()
+                .serviceModule(new ServiceModule())
+                .build()
+                .inject(this);
     }
 }

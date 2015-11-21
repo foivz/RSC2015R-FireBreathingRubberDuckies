@@ -25,8 +25,8 @@ public class NotificationInteractor {
         this.service = service;
     }
 
-    public void fetchNotifications(String token){
-        service.fetchNotifications(token)
+    public void fetchNotifications(String token) {
+        service.fetchNotifications(ServiceUtil.formatToken(token))
                 .flatMapIterable(FeedResponse::getData)
                 .map(data -> {
                     FeedItem item = new FeedItem();
@@ -40,7 +40,7 @@ public class NotificationInteractor {
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(result->{
+                .subscribe(result -> {
                     ZET.post(new FeedSuccessEvent(result));
                 }, error->{
                     ZET.post(new FeedFailureEvent(ServiceUtil.getStatusCode(error)));

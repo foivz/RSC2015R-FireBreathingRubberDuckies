@@ -1,15 +1,13 @@
 package com.fbrd.rsc2015.ui.activity;
 
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,20 +16,10 @@ import android.widget.Toast;
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.app.di.component.DaggerMainComponent;
 import com.fbrd.rsc2015.app.di.module.MainModule;
-import com.fbrd.rsc2015.domain.model.FeedItem;
-import com.fbrd.rsc2015.domain.repository.RSCPreferences;
+import com.fbrd.rsc2015.domain.model.response.FeedItem;
 import com.fbrd.rsc2015.ui.presenter.MainPresenter;
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
-import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
-import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.squareup.picasso.Picasso;
 
 import org.buraktamturk.loadingview.LoadingView;
@@ -45,7 +33,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.nlopez.smartadapters.adapters.RecyclerMultiAdapter;
 
-public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerItemClickListener, AccountHeader.OnAccountHeaderListener {
+public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerItemClickListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -75,20 +63,24 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
         presenter.onViewCreate();
         listFeed.setLayoutManager(new LinearLayoutManager(this));
         listFeed.setAdapter(adapter);
+        adapter.setViewEventListener((i, o, i1, view) -> {
+
+        });
     }
 
     @Override
     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+        switch (position) {
+            case 6:
+                presenter.logout();
+                break;
+        }
         return false;
     }
 
-    @Override
-    public boolean onProfileChanged(View view, IProfile profile, boolean current) {
-        return false;
-    }
 
     public void showAvatar(String image) {
-        Picasso.with(this).load("https://avatars3.githubusercontent.com/u/1476232").into(imgAvatar);
+        Picasso.with(this).load(image).into(imgAvatar);
     }
 
     public void showUsername(String username) {
@@ -113,4 +105,28 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
         loadingView.setLoading(true);
     }
 
+
+    public void showLogin() {
+        finish();
+        startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.onViewResume();
+    }
+
+    @Override
+    protected void onPause() {
+        presenter.onViewPause();
+        super.onPause();
+    }
+
+    private void openUrl(String url){
+        /*CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setShowTitle(true);
+        CustomTabsIntent intent = builder.build();
+        intent.launchUrl(this, Uri.parse(someUrl));*/
+    }
 }

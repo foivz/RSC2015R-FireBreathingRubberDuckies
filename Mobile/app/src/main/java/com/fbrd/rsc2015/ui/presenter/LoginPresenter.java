@@ -69,7 +69,7 @@ public class LoginPresenter {
     @Subscribe
     public void onLoginError(LoginErrorEvent errorEvent) {
         view.dismissLoading();
-        view.showError("An error has occured");
+//        view.showError("An error haš occured");
     }
 
     public void onViewResume() {

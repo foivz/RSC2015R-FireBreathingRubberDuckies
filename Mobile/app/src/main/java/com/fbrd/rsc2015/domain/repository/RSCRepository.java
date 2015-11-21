@@ -16,6 +16,7 @@ import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
 import retrofit.http.GET;
 import retrofit.http.Header;
+import retrofit.http.PUT;
 import ru.noties.flatten.FlattenJsonDeserializer;
 import ru.noties.flatten.Flattened;
 import rx.Observable;
@@ -67,7 +68,9 @@ public class RSCRepository {
         Observable<CommunicationsResponse> testComms();
 
         @GET("/api/1/notifications")
-        Observable<FeedResponse> fetchNotifications(@Header("token") String token);
+        Observable<FeedResponse> fetchNotifications(@Header("Authorization") String token);
+
+
 
 
     }

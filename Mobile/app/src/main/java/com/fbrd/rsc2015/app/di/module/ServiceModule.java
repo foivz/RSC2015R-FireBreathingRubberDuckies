@@ -1,8 +1,7 @@
 package com.fbrd.rsc2015.app.di.module;
 
 import com.fbrd.rsc2015.domain.interactor.LocationInteractor;
-import com.fbrd.rsc2015.domain.interactor.NotificationInteractor;
-import com.fbrd.rsc2015.domain.service.BaseService;
+import com.fbrd.rsc2015.domain.repository.RSCRepository;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,7 +13,7 @@ import dagger.Provides;
 public class ServiceModule {
 
     @Provides
-    LocationInteractor provideNotificationsInteractor(){
-        return new LocationInteractor();
+    LocationInteractor provideNotificationsInteractor(RSCRepository.Api api){
+        return new LocationInteractor(api);
     }
 }
