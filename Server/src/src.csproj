@@ -338,11 +338,16 @@
     <Compile Include="Migrations\201511211409455_LongitudeAndLatSupport.Designer.cs">
       <DependentUpon>201511211409455_LongitudeAndLatSupport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511211441387_RTCRoutes.cs" />
+    <Compile Include="Migrations\201511211441387_RTCRoutes.Designer.cs">
+      <DependentUpon>201511211441387_RTCRoutes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Api\AddMemberApiModel.cs" />
     <Compile Include="Models\Api\CreateGameApiModel.cs" />
     <Compile Include="Models\Api\CreateUserApiModel.cs" />
     <Compile Include="Controllers\Api\NotificationApiController.cs" />
     <Compile Include="Models\Api\GameApiModel.cs" />
+    <Compile Include="Models\Api\LocationApiModel.cs" />
     <Compile Include="Models\Api\RoleApiModel.cs" />
     <Compile Include="Models\Api\TeamApiModel.cs" />
     <Compile Include="Models\Api\UserApiModel.cs" />
@@ -432,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511211409455_LongitudeAndLatSupport.resx">
       <DependentUpon>201511211409455_LongitudeAndLatSupport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211441387_RTCRoutes.resx">
+      <DependentUpon>201511211441387_RTCRoutes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

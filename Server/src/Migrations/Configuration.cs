@@ -19,7 +19,7 @@ namespace src.Migrations
 
         protected override void Seed(src.Models.DatabaseContext context)
         {
-            var userMan = new UserManager(new UserStore<User>(context));
+            /*var userMan = new UserManager(new UserStore<User>(context));
 
             userMan.UserLockoutEnabledByDefault = true;
 
@@ -80,7 +80,7 @@ namespace src.Migrations
 
             userMan.CreateAsync(user, "123456").Wait();
 
-            userMan.AddToRoleAsync(user.Id, "user").Wait();
+            userMan.AddToRoleAsync(user.Id, "user").Wait();*/
         }
 
         private void SaveChanges(DbContext context)

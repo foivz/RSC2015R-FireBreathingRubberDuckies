@@ -1,4 +1,5 @@
-﻿using src.Helpers.Api.AmazonS3;
+﻿using src.Controllers.Abstract;
+using src.Helpers.Api.AmazonS3;
 using src.Helpers.Api.AmazonS3.Interfaces;
 using src.Helpers.Api.AmazonS3.Models;
 using src.Helpers.Api.Hubs;
@@ -17,11 +18,12 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Http;
+using src.Helpers.Api.Results;
 
 namespace src.Controllers
 {
     [RoutePrefix("api/1/test")]
-    public class TestApiController : ApiController
+    public class TestApiController : AbstractApiController
     {
         [HttpGet, Route("gcm/{registrationId}")]
         public IHttpActionResult Test(string registrationId)
@@ -67,10 +69,30 @@ namespace src.Controllers
             return this.Ok(new ApiResponse(200, obj));
         }
 
+        [HttpGet, Route("webrtc")]
+        public async Task<IHttpActionResult> WebRTCUrl()
+        {
+            var rtc = this.db.RTCs.FirstOrDefault();
+
+            return this.Ok(new ApiResponse(200, rtc));
+        }
+
         [HttpPost, Route("webrtc")]
         public async Task<IHttpActionResult> WebRTC(WebRtc model)
         {
-            return this.Ok();
+            if(ModelState.IsValid && model != null)
+            {
+                this.db.RTCs.RemoveRange(this.db.RTCs.ToList());
+
+                await this.db.SaveChangesAsync();
+
+                this.db.RTCs.Add(model);
+
+                await this.db.SaveChangesAsync();
+
+                return this.Ok(new ApiResponse(200, model));
+            }
+            return this.BadRequest(new ApiResponse(400, model));
         }
     }
 }

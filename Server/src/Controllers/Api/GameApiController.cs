@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using src.Helpers.Api.Results;
 using src.Models;
+using System.Data.Entity;
 
 namespace src.Controllers.Api
 {
@@ -20,14 +21,14 @@ namespace src.Controllers.Api
         [HttpGet, Route("")]
         public async Task<IHttpActionResult> GetAll()
         {
-            var games = this.db.Games;
+            var games = this.db.Games.Include(x => x.ChallengerOne).Include(x => x.ChallengerTwo);
             return this.Ok(new ApiResponse(200, Mapper.Map<IEnumerable<GameApiModel>>(games).ToArray()));
         }
 
         [HttpGet, Route("{id:long}")]
         public async Task<IHttpActionResult> GetSingle(long id)
         {
-            var wanted = await this.db.Games.FindAsync(id);
+            var wanted = await this.db.Games.Where(x => x.Id.Equals(id)).Include(x => x.ChallengerOne).Include(x => x.ChallengerTwo).FirstAsync();
             if (wanted != null)
                 return this.Ok(new ApiResponse(200, Mapper.Map<GameApiModel>(wanted)));
             return this.NotFound(new ApiResponse(404, id));
@@ -51,6 +52,23 @@ namespace src.Controllers.Api
                 await this.db.SaveChangesAsync();
 
                 return this.Ok(new ApiResponse(200, Mapper.Map<GameApiModel>(mapped)));
+            }
+            return this.BadRequest(new ApiResponse(400, model));
+        }
+
+        [HttpPut, Route(""), Authorize]
+        public async Task<IHttpActionResult> UpdateLocation(LocationApiModel model)
+        {
+            if (ModelState.IsValid && model != null)
+            {
+                this.CurrentUser.Longitude = model.Long;
+                this.CurrentUser.Latitude = model.Lat;
+
+                var result = await this.userManager.UpdateAsync(this.CurrentUser);
+
+                if (result.Succeeded)
+                    return this.Ok(new ApiResponse(200, Mapper.Map<UserApiModel>(this.CurrentUser)));
+                return this.InternalServerError(new ApiResponse(500, Mapper.Map<UserApiModel>(this.CurrentUser)));
             }
             return this.BadRequest(new ApiResponse(400, model));
         }

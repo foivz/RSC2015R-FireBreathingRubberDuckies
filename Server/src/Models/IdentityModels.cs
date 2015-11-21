@@ -46,6 +46,7 @@ namespace src.Models
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Game> Games { get; set; }
+        public virtual DbSet<WebRtc> RTCs { get; set; }
         public DatabaseContext()
             : base("FBRDOnline", throwIfV1Schema: false)
         {
