@@ -12,4 +12,8 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="LoginActivity">Login</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_team">TeamActivity</string>
+    <string name="title_activity_game">GameActivity</string>
 </resources>
