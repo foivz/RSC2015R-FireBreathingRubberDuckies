@@ -1,10 +1,13 @@
 package com.fbrd.rsc2015.domain.gcm;
 
 import android.content.Intent;
+import android.util.Log;
 
 import com.dmacan.lightandroidgcm.GcmIntentService;
 import com.dmacan.lightandroidgcm.GcmObserver;
 import com.dmacan.lightandroidgcm.listener.OnGcmMessageReceivedListener;
+import com.example.loginmodule.model.bus.ZET;
+import com.fbrd.rsc2015.domain.model.event.GcmMessageEvent;
 
 /**
  * Created by david on 21.11.2015..
@@ -41,6 +44,10 @@ public class RSCIntentService extends GcmIntentService {
         OnGcmMessageReceivedListener observer = GcmObserver.getInstance().getObserver();
         if (observer != null)
             observer.onGcmMessageReceived(true, intent);
+        String action = intent.getStringExtra("action");
+        String data = intent.getStringExtra("data");
+        String message = intent.getStringExtra("message");
+        ZET.post(new GcmMessageEvent(action, data, message));
         notification(intent);
     }
 

@@ -31,6 +31,7 @@ public class LoginInteractorFacebookImpl implements LoginInteractorFacebook {
     private AppServiceImpl.AppService appService;
 
     private String token;
+    private String registrationId;
 
     public LoginInteractorFacebookImpl(Activity activity, CallbackManager callbackManager, AppServiceImpl.AppService appService) {
         this.activity = activity;
@@ -39,7 +40,8 @@ public class LoginInteractorFacebookImpl implements LoginInteractorFacebook {
     }
 
     @Override
-    public void login() {
+    public void login(String registrationId) {
+        this.registrationId = registrationId;
         LoginManager.getInstance()
                 .registerCallback(callbackManager, loginCallback);
         LoginManager.getInstance()
@@ -47,7 +49,7 @@ public class LoginInteractorFacebookImpl implements LoginInteractorFacebook {
     }
 
     private void completeLogin(LoginResult result) {
-        appService.loginFacebook(result.getAccessToken().getToken())
+        appService.loginFacebook(result.getAccessToken().getToken(), registrationId)
                 .flatMap(lfr -> {
                     token = lfr.getToken();
                     return appService.getUser(ServiceUtil.formatToken(lfr.getToken()), lfr.getId());

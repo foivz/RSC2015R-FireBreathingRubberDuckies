@@ -10,6 +10,7 @@ import com.example.loginmodule.service.app.AppServiceImpl;
 import com.facebook.CallbackManager;
 import com.facebook.internal.CallbackManagerImpl;
 import com.fbrd.rsc2015.app.RSCApp;
+import com.fbrd.rsc2015.domain.gcm.RSCRegistar;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.ui.activity.LoginActivity;
 import com.fbrd.rsc2015.ui.presenter.LoginPresenter;
@@ -42,8 +43,13 @@ public class LoginModule {
     }
 
     @Provides
-    LoginPresenter loginPresenter(LoginInteractor loginInteractor, LoginActivity view, LoginInteractorFacebook loginInteractorFacebook, LoginInteractorGoogle loginInteractorGoogle, RSCPreferences preferences) {
-        return new LoginPresenter(view, loginInteractor, loginInteractorFacebook, loginInteractorGoogle, preferences);
+    LoginPresenter loginPresenter(LoginInteractor loginInteractor, LoginActivity view, LoginInteractorFacebook loginInteractorFacebook, LoginInteractorGoogle loginInteractorGoogle, RSCPreferences preferences, RSCRegistar registar) {
+        return new LoginPresenter(view, loginInteractor, loginInteractorFacebook, loginInteractorGoogle, preferences, registar);
+    }
+
+    @Provides
+    RSCRegistar registar() {
+        return new RSCRegistar(RSCApp.getInstance());
     }
 
     @Provides

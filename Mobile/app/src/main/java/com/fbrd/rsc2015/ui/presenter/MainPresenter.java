@@ -4,6 +4,7 @@ import com.example.loginmodule.model.bus.ZET;
 import com.fbrd.rsc2015.domain.interactor.NotificationInteractor;
 import com.fbrd.rsc2015.domain.model.event.FeedFailureEvent;
 import com.fbrd.rsc2015.domain.model.event.FeedSuccessEvent;
+import com.fbrd.rsc2015.domain.model.event.GcmMessageEvent;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.ui.activity.MainActivity;
 
@@ -44,6 +45,10 @@ public class MainPresenter {
         view.showFeed(event.getList());
     }
 
+    @Subscribe
+    public void onGcmMessageRecieved(GcmMessageEvent event) {
+        view.showError(event.getMessage());
+    }
 
     @Subscribe
     public void onFeedFetchError(FeedFailureEvent event) {

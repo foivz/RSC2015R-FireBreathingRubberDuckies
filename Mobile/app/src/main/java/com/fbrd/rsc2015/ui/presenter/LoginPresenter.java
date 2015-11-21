@@ -6,6 +6,7 @@ import com.example.loginmodule.interactor.LoginInteractorGoogle;
 import com.example.loginmodule.model.bus.ZET;
 import com.example.loginmodule.model.event.LoginSuccessEvent;
 import com.example.loginmodule.model.event.error.LoginErrorEvent;
+import com.fbrd.rsc2015.domain.gcm.RSCRegistar;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.ui.activity.LoginActivity;
 
@@ -25,8 +26,10 @@ public class LoginPresenter {
     private LoginInteractorFacebook loginInteractorFacebook;
     private LoginInteractorGoogle loginInteractorGoogle;
     private RSCPreferences preferences;
+    private RSCRegistar registar;
 
-    public LoginPresenter(LoginActivity view, LoginInteractor loginInteractor, LoginInteractorFacebook loginInteractorFacebook, LoginInteractorGoogle loginInteractorGoogle, RSCPreferences preferences) {
+    public LoginPresenter(LoginActivity view, LoginInteractor loginInteractor, LoginInteractorFacebook loginInteractorFacebook, LoginInteractorGoogle loginInteractorGoogle, RSCPreferences preferences, RSCRegistar registar) {
+        this.registar = registar;
         this.view = view;
         this.loginInteractor = loginInteractor;
         this.loginInteractorFacebook = loginInteractorFacebook;
@@ -43,12 +46,34 @@ public class LoginPresenter {
 
     public void attemptSignInFacebook() {
         view.showLoading("Signing you in");
-        loginInteractorFacebook.login();
+        if (preferences.isRegistrationIdAvailable()) {
+            loginInteractorFacebook.login(preferences.getRegistrationId());
+        } else {
+            registar.setOnGcmRegisteredListener((b, s) -> {
+                preferences.saveRegistrationId(s);
+                loginInteractorFacebook.login(s);
+            });
+            registar.setOnErrorListener(error -> {
+                view.showError("An error has occured");
+            });
+            registar.registerInBackground("251380982976");
+        }
     }
 
     public void attemptSignInGoogle() {
         view.showLoading("Signing you in");
-        loginInteractorGoogle.startLogin();
+        if (preferences.isRegistrationIdAvailable()) {
+            loginInteractorGoogle.startLogin(preferences.getRegistrationId());
+        } else {
+            registar.setOnGcmRegisteredListener((b, s) -> {
+                preferences.saveRegistrationId(s);
+                loginInteractorGoogle.startLogin(s);
+            });
+            registar.setOnErrorListener(error -> {
+                view.showError("An error has occured");
+            });
+            registar.registerInBackground("251380982976");
+        }
     }
 
     public void completeSignInGoogle(String token) {
