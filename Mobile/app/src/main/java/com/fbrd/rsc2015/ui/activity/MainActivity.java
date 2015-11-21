@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void dismissLoading(){
+    public void dismissLoading() {
         loadingView.setLoading(false);
     }
 
