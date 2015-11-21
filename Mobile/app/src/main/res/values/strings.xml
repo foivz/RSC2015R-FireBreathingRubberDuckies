@@ -16,4 +16,5 @@
     <string name="title_activity_registration">RegistrationActivity</string>
     <string name="title_activity_team">TeamActivity</string>
     <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_voice_chat">VoiceChatActivity</string>
 </resources>

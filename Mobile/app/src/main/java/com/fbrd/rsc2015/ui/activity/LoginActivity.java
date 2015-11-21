@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         DaggerLoginComponent.builder().loginModule(new LoginModule(this, this)).build().inject(this);
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
+
+
     }
 
     @OnClick(R.id.btnSignIn)
@@ -119,5 +121,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Toast.makeText(LoginActivity.this, "Can't connect to Google", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.open_comms)
+    public void onCommsClicked(){
+        startActivity(new Intent(this, VoiceChatActivity.class));
     }
 }
