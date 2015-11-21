@@ -67,7 +67,7 @@ public class RSCRepository {
         Observable<CommunicationsResponse> testComms();
 
         @GET("/api/1/notifications")
-        Observable<FeedResponse> fetchNotifications(@Header("token") String token);
+        Observable<FeedResponse> fetchNotifications(@Header("Authorization") String token);
 
 
     }

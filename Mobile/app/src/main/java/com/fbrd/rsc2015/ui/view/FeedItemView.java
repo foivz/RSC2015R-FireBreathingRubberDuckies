@@ -9,6 +9,7 @@ import com.fbrd.rsc2015.domain.model.response.FeedItem;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import io.nlopez.smartadapters.views.BindableLayout;
 
 /**
@@ -28,14 +29,22 @@ public class FeedItemView extends BindableLayout<FeedItem> {
     }
 
     @Override
+    public void onViewInflated() {
+        super.onViewInflated();
+        ButterKnife.bind(this);
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.item_feed;
     }
 
     @Override
     public void bind(FeedItem feedItem) {
+        setOnClickListener(v -> notifyItemAction(1000, feedItem, v));
         Picasso.with(getContext()).load(feedItem.getImage()).into(imgFeedItem);
         txtFeedDescription.setText(feedItem.getDescription());
         txtFeedName.setText(feedItem.getName());
     }
+
 }

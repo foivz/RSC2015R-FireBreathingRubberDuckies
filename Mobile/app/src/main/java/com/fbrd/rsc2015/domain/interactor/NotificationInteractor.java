@@ -26,7 +26,7 @@ public class NotificationInteractor {
     }
 
     public void fetchNotifications(String token) {
-        service.fetchNotifications(token)
+        service.fetchNotifications(ServiceUtil.formatToken(token))
                 .flatMapIterable(FeedResponse::getData)
                 .map(data -> {
                     FeedItem item = new FeedItem();
