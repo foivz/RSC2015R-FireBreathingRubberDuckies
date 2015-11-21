@@ -1,59 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.fbrd.rsc2015" >
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.fbrd.rsc2015">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".app.RSCApp"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".app.RSCApp"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity
+                android:name=".ui.activity.SplashActivity"
+                android:label="@string/app_name"
+                android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+                android:name="com.facebook.FacebookActivity"
+                android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                android:label="@string/app_name"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
+                android:name="com.facebook.sdk.ApplicationId"
+                android:value="@string/facebook_app_id"/>
 
         <!-- GCM -->
         <!-- Register custom receiver -->
         <receiver
-            android:name=".domain.gcm.RSCBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+                android:name=".domain.gcm.RSCBroadcastReceiver"
+                android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
                 <!-- Category name (usually package name) -->
-                <category android:name="com.fbrd.rsc2015" />
+                <category android:name="com.fbrd.rsc2015"/>
             </intent-filter>
         </receiver>
         <!-- Add Google play services -->
         <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"
-            tools:replace="android:value" />
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version"
+                tools:replace="android:value"/>
         <!-- Register custom service -->
-        <service android:name=".domain.gcm.RSCIntentService" />
+        <service android:name=".domain.gcm.RSCIntentService"/>
 
-        <activity android:name=".ui.activity.VoiceChatActivity" >
+        <activity android:name=".ui.activity.VoiceChatActivity"
+                  android:label="@string/title_activity_voice_chat"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+                android:name=".ui.activity.MainActivity"
+                android:label="@string/title_activity_main"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+                android:name=".ui.activity.LoginActivity"
+                android:label="@string/LoginActivity"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+                android:name=".ui.activity.RegistrationActivity"
+                android:label="@string/title_activity_registration"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+                android:name=".ui.activity.TeamActivity"
+                android:label="@string/title_activity_team"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+                android:name=".ui.activity.GameActivity"
+                android:label="@string/title_activity_game"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

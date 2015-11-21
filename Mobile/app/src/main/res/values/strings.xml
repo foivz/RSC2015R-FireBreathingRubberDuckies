@@ -8,4 +8,13 @@
     <string name="lbl_sign_in">Sign in</string>
     <string name="lbl_google">Use Google</string>
     <string name="lbl_facebook">Use Facebook</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="LoginActivity">Login</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_team">TeamActivity</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_voice_chat">VoiceChatActivity</string>
 </resources>

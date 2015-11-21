@@ -66,6 +66,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         loginPresenter.attemptSignInGoogle();
     }
 
+    @OnClick(R.id.fab)
+    protected void onBtnRegisterClick() {
+        startActivity(new Intent(this, RegistrationActivity.class));
+    }
+
     public String getUsername() {
         return etUsername.getText().toString();
     }
@@ -79,7 +84,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     public void proceed() {
-        Toast.makeText(LoginActivity.this, "Proceeding", Toast.LENGTH_SHORT).show();
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     public void showError(String s) {
