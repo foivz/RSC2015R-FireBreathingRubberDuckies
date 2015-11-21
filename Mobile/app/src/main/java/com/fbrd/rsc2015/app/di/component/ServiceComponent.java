@@ -2,7 +2,7 @@ package com.fbrd.rsc2015.app.di.component;
 
 import com.fbrd.rsc2015.app.di.module.ApiModule;
 import com.fbrd.rsc2015.app.di.module.ServiceModule;
-import com.fbrd.rsc2015.domain.service.BaseService;
+import com.fbrd.rsc2015.domain.service.LocationUpdateService;
 
 import javax.inject.Singleton;
 
@@ -19,5 +19,5 @@ import dagger.Component;
 )
 @Singleton
 public interface ServiceComponent {
-    void inject(BaseService service);
+    void inject(LocationUpdateService service);
 }

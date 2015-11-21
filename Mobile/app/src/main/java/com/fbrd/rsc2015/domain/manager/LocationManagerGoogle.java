@@ -1,5 +1,6 @@
 package com.fbrd.rsc2015.domain.manager;
 
+import com.fbrd.rsc2015.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -27,8 +28,6 @@ public class LocationManagerGoogle
 
     private LocationRequest request;
 
-    private Geocoder geocoder;
-
     private Context context;
 
     private GetLocationInteractor getLocationInteractor;
@@ -41,21 +40,20 @@ public class LocationManagerGoogle
 
     private OnConnectionListener onConnectionListener;
 
-    public LocationManagerGoogle(Context context, Geocoder geocoder, GetLocationInteractor getLocationInteractor,
-            GetLocationInteractor getLocationUpdateInteractor) {
+    public LocationManagerGoogle(Context context, GetLocationInteractor getLocationInteractor,
+                                 GetLocationInteractor getLocationUpdateInteractor) {
         this.context = context;
-        this.geocoder = geocoder;
-        this.request = toRequest();
+        this.request = toRequest(context.getResources().getInteger(R.integer.location_refresh));
         this.getLocationInteractor = getLocationInteractor;
         this.getLocationUpdateInteractor = getLocationUpdateInteractor;
     }
 
-    private static LocationRequest toRequest() {
+    private static LocationRequest toRequest(int interval) {
         return new LocationRequest()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setMaxWaitTime(60000)
-                .setInterval(60000)
-                .setFastestInterval(60000);
+                .setMaxWaitTime(interval)
+                .setInterval(interval)
+                .setFastestInterval(interval);
     }
 
     private void initApiClient(Context context) {

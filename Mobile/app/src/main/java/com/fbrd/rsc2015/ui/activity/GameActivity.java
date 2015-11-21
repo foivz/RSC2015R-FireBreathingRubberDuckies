@@ -1,6 +1,7 @@
 package com.fbrd.rsc2015.ui.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -25,6 +26,7 @@ import com.dmacan.lightandroid.ui.custom.tabs.TabAdapter;
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.app.di.component.DaggerGameComponent;
 import com.fbrd.rsc2015.app.di.module.GameModule;
+import com.fbrd.rsc2015.domain.service.LocationUpdateService;
 import com.fbrd.rsc2015.ui.fragment.MapFragment;
 import com.fbrd.rsc2015.ui.fragment.NfcFragment;
 import com.fbrd.rsc2015.ui.fragment.StatsFragment;
@@ -61,6 +63,7 @@ public class GameActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         DaggerGameComponent.builder().gameModule(new GameModule(this)).build().inject(this);
         setupTabs();
+        startService(new Intent(this, LocationUpdateService.class));
     }
 
     private void setupTabs() {
