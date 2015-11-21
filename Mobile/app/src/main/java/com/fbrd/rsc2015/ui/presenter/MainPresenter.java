@@ -20,6 +20,7 @@ public class MainPresenter {
     }
 
     public void onViewCreate() {
+        view.showLoading("Loading your feed");
         preferences.loadUserAsync()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -27,6 +28,15 @@ public class MainPresenter {
                     view.showAvatar(user.getImage());
                     view.showUsername(user.getUsername());
                 });
+    }
+
+    public void onFeedFetched() {
+        view.dismissLoading();
+    }
+
+    public void onFeedFetchError() {
+        view.dismissLoading();
+        view.showError("Couldn't fetch your feed");
     }
 
 }

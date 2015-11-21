@@ -3,9 +3,11 @@ package com.fbrd.rsc2015.app.di.module;
 import android.support.v7.widget.Toolbar;
 
 import com.fbrd.rsc2015.R;
+import com.fbrd.rsc2015.domain.model.FeedItem;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.ui.activity.MainActivity;
 import com.fbrd.rsc2015.ui.presenter.MainPresenter;
+import com.fbrd.rsc2015.ui.view.FeedItemView;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -14,8 +16,12 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
+import io.nlopez.smartadapters.SmartAdapter;
+import io.nlopez.smartadapters.adapters.RecyclerMultiAdapter;
 
 /**
  * Created by david on 21.11.2015..
@@ -63,4 +69,9 @@ public class MainModule {
                 .build();
     }
 
+    @Provides
+    @Named("list_feed")
+    RecyclerMultiAdapter feedAdapter() {
+        return SmartAdapter.empty().map(FeedItem.class, FeedItemView.class).recyclerAdapter();
+    }
 }
