@@ -12,6 +12,7 @@ using src.Models.Api;
 using AutoMapper;
 using src.Models;
 using System.Data.Entity;
+using src.Helpers.PushNotifications;
 
 namespace src.Controllers.Api
 {
@@ -72,6 +73,16 @@ namespace src.Controllers.Api
                     team.Users.Add(member);
 
                     await this.db.SaveChangesAsync();
+
+                    new GcmProvider().CreateNotification(new PushNotificationData
+                    {
+                        Action = 1,
+                        Message = "Added to the team!",
+                        Data = new
+                        {
+                           TeamId = team.Id
+                        }
+                    }, member.RegistrationId).SendAsync().Wait();
 
                     return this.Ok(new ApiResponse(200, model));
                 }

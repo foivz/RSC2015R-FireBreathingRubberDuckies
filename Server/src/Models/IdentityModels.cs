@@ -22,6 +22,7 @@ namespace src.Models
         public string RegistrationId { get; set; }
         public string Avatar { get; set; }
         public bool Killed { get; set; }
+        public bool Banned { get; set; }
         public bool Enabled { get; set; }
         public string NFC { get; set; }
         public User()

@@ -23,6 +23,7 @@ namespace src.Models.Api
         [Required]
         public string Avatar { get; set; }
         public bool Killed { get; set; }
+        public bool Banned { get; set; }
         public bool Enabled { get; set; }
         public string NFC { get; set; }
         public string RegistrationId { get; set; }

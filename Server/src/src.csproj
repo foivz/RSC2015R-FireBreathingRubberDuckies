@@ -354,6 +354,10 @@
     <Compile Include="Migrations\201511211604583_NFCOnUserModel.Designer.cs">
       <DependentUpon>201511211604583_NFCOnUserModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511211851196_ModelUpdate.cs" />
+    <Compile Include="Migrations\201511211851196_ModelUpdate.Designer.cs">
+      <DependentUpon>201511211851196_ModelUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Api\AddMemberApiModel.cs" />
     <Compile Include="Models\Api\CreateGameApiModel.cs" />
     <Compile Include="Models\Api\CreateUserApiModel.cs" />
@@ -463,6 +467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511211604583_NFCOnUserModel.resx">
       <DependentUpon>201511211604583_NFCOnUserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211851196_ModelUpdate.resx">
+      <DependentUpon>201511211851196_ModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
