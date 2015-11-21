@@ -4,7 +4,8 @@ import com.example.loginmodule.model.response.RegistrationResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import com.fbrd.rsc2015.domain.model.CommunicationsResponse;
+import com.fbrd.rsc2015.domain.model.response.CommunicationsResponse;
+import com.fbrd.rsc2015.domain.model.response.FeedResponse;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
@@ -14,6 +15,7 @@ import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
 import retrofit.http.GET;
+import retrofit.http.Header;
 import ru.noties.flatten.FlattenJsonDeserializer;
 import ru.noties.flatten.Flattened;
 import rx.Observable;
@@ -63,6 +65,11 @@ public class RSCRepository {
 
         @GET("/api/1/test/webrtc")
         Observable<CommunicationsResponse> testComms();
+
+        @GET("/api/1/notifications")
+        Observable<FeedResponse> fetchNotifications(@Header("token") String token);
+
+
     }
 
 }

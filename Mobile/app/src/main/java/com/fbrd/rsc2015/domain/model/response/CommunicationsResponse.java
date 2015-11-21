@@ -1,4 +1,4 @@
-package com.fbrd.rsc2015.domain.model;
+package com.fbrd.rsc2015.domain.model.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

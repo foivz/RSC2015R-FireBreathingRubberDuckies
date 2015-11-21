@@ -17,4 +17,7 @@
     <string name="title_activity_team">TeamActivity</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="title_activity_voice_chat">VoiceChatActivity</string>
+    <string name="title_nfc_activity">NFCScanActivity</string>
+    <string name="scan_nfc_text">Scan your nfc and register into the game</string>
+    <string name="nfc_enabled_text">NFC is enabled</string>
 </resources>

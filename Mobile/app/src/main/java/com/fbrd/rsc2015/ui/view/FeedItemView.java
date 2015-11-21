@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fbrd.rsc2015.R;
-import com.fbrd.rsc2015.domain.model.FeedItem;
+import com.fbrd.rsc2015.domain.model.response.FeedItem;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;

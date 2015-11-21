@@ -1,4 +1,4 @@
-package com.fbrd.rsc2015.domain.model;
+package com.fbrd.rsc2015.domain.model.response;
 
 /**
  * Created by david on 21.11.2015..
