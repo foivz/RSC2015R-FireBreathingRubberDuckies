@@ -1,9 +1,9 @@
 package com.fbrd.rsc2015.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +32,6 @@ import javax.inject.Named;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.nlopez.smartadapters.adapters.RecyclerMultiAdapter;
-import io.nlopez.smartadapters.utils.ViewEventListener;
 
 public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerItemClickListener {
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
         listFeed.setLayoutManager(new LinearLayoutManager(this));
         listFeed.setAdapter(adapter);
         adapter.setViewEventListener((i, o, i1, view) -> {
-
+            openUrl(((FeedItem) o).getUrl());
         });
     }
 
@@ -124,10 +123,10 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
         super.onPause();
     }
 
-    private void openUrl(String url){
-        /*CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+    private void openUrl(String url) {
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         builder.setShowTitle(true);
         CustomTabsIntent intent = builder.build();
-        intent.launchUrl(this, Uri.parse(someUrl));*/
+        intent.launchUrl(this, Uri.parse(url));
     }
 }

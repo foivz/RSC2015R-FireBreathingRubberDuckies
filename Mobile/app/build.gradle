@@ -71,7 +71,7 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.github.jkwiecien:EasyImage:1.0.2'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
-    compile 'com.android.support:customtabs:23.0.1'
+    compile 'com.android.support:customtabs:23.1.1'
     compile 'com.github.siyamed:android-shape-imageview:0.9.3@aar'
     compile('com.mikepenz:materialdrawer:4.4.9@aar') {
         transitive = true
