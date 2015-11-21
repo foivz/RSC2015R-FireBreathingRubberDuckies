@@ -1,5 +1,6 @@
 package com.fbrd.rsc2015.ui.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,7 +46,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.nlopez.smartadapters.adapters.RecyclerMultiAdapter;
 
-public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerItemClickListener, AccountHeader.OnAccountHeaderListener {
+public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerItemClickListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -79,13 +80,14 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
 
     @Override
     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+        switch (position) {
+            case 6:
+                presenter.logout();
+                break;
+        }
         return false;
     }
 
-    @Override
-    public boolean onProfileChanged(View view, IProfile profile, boolean current) {
-        return false;
-    }
 
     public void showAvatar(String image) {
         Picasso.with(this).load("https://avatars3.githubusercontent.com/u/1476232").into(imgAvatar);
@@ -113,4 +115,9 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
         loadingView.setLoading(true);
     }
 
+
+    public void showLogin() {
+        finish();
+        startActivity(new Intent(this, LoginActivity.class));
+    }
 }

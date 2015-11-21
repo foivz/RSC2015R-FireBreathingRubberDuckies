@@ -7,7 +7,7 @@ import com.example.loginmodule.model.event.error.ErrorEvent;
  */
 public class FeedFailureEvent extends ErrorEvent {
 
-    public FeedFailureEvent(Throwable code) {
+    public FeedFailureEvent(int code) {
         super(code);
     }
 }

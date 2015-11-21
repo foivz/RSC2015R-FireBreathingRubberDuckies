@@ -1,6 +1,7 @@
 package com.fbrd.rsc2015.domain.interactor;
 
 import com.example.loginmodule.model.bus.ZET;
+import com.example.loginmodule.util.ServiceUtil;
 import com.fbrd.rsc2015.domain.model.event.FeedFailureEvent;
 import com.fbrd.rsc2015.domain.model.event.FeedSuccessEvent;
 import com.fbrd.rsc2015.domain.model.response.FeedItem;
@@ -24,7 +25,7 @@ public class NotificationInteractor {
         this.service = service;
     }
 
-    public void fetchNotifications(String token){
+    public void fetchNotifications(String token) {
         service.fetchNotifications(token)
                 .flatMapIterable(FeedResponse::getData)
                 .map(data -> {
@@ -39,10 +40,10 @@ public class NotificationInteractor {
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(result->{
+                .subscribe(result -> {
                     ZET.post(new FeedSuccessEvent(result));
-                }, error->{
-                    ZET.post(new FeedFailureEvent(error));
+                }, error -> {
+                    ZET.post(new FeedFailureEvent(ServiceUtil.getStatusCode(error)));
                 });
     }
 

@@ -39,4 +39,9 @@ public class MainPresenter {
         view.showError("Couldn't fetch your feed");
     }
 
+    public void logout(){
+        preferences.clear();
+        view.showLogin();
+    }
+
 }
