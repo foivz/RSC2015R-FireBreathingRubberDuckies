@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 
 import com.fbrd.rsc2015.domain.model.response.CommunicationsResponse;
 import com.fbrd.rsc2015.domain.model.response.FeedResponse;
+import com.fbrd.rsc2015.domain.model.response.LocationResponse;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
@@ -70,7 +71,8 @@ public class RSCRepository {
         @GET("/api/1/notifications")
         Observable<FeedResponse> fetchNotifications(@Header("Authorization") String token);
 
-
+        @PUT("/api/1/games")
+        Observable<LocationResponse> pushLocation(@Header("Authorization") String token);
 
 
     }

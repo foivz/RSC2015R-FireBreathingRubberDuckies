@@ -1,5 +1,6 @@
 package com.fbrd.rsc2015.app.di.component;
 
+import com.fbrd.rsc2015.app.di.module.ApiModule;
 import com.fbrd.rsc2015.app.di.module.ServiceModule;
 import com.fbrd.rsc2015.domain.service.BaseService;
 
@@ -12,6 +13,7 @@ import dagger.Component;
  */
 @Component(
         modules = {
+                ApiModule.class,
                 ServiceModule.class
         }
 )

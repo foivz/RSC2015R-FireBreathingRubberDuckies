@@ -5,13 +5,13 @@ package com.fbrd.rsc2015.domain.model.event;
  */
 public class LocationPostEvent {
 
-    private int level;
+    private int statusCode;
 
     public LocationPostEvent(int level) {
-        this.level = level;
+        this.statusCode = level;
     }
 
     public int getLevel() {
-        return level;
+        return statusCode;
     }
 }

@@ -5,23 +5,23 @@ package com.fbrd.rsc2015.domain.model.request;
  */
 public class LocationModel {
 
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
     private int mapId;
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

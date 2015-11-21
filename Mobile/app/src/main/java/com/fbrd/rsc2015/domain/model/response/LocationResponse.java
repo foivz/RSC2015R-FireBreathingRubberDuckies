@@ -1,53 +1,36 @@
 package com.fbrd.rsc2015.domain.model.response;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import com.example.loginmodule.model.response.Response;
+
+import java.util.List;
 
 /**
  * Created by noxqs on 21.11.15..
  */
 public class LocationResponse extends Response {
 
+    private List<Data> data;
 
-    class Data {
+    public List<Data> getData() {
+        return data;
+    }
 
-        @SerializedName("id")
-        @Expose
+    public void setData(List<Data> data) {
+        this.data = data;
+    }
+
+    public class Data {
+
         private String id;
-        @SerializedName("firstName")
-        @Expose
         private String firstName;
-        @SerializedName("lastName")
-        @Expose
         private String lastName;
-        @SerializedName("longitude")
-        @Expose
-        private int longitude;
-        @SerializedName("latitude")
-        @Expose
-        private int latitude;
-        @SerializedName("userName")
-        @Expose
+        private double longitude;
+        private double latitude;
         private String userName;
-        @SerializedName("email")
-        @Expose
         private String email;
-        @SerializedName("avatar")
-        @Expose
         private Object avatar;
-        @SerializedName("killed")
-        @Expose
         private boolean killed;
-        @SerializedName("banned")
-        @Expose
         private boolean banned;
-        @SerializedName("enabled")
-        @Expose
-        private boolean enabled;
-        @SerializedName("nfc")
-        @Expose
         private String nfc;
 
         public String getId() {
@@ -74,7 +57,7 @@ public class LocationResponse extends Response {
             this.lastName = lastName;
         }
 
-        public int getLongitude() {
+        public double getLongitude() {
             return longitude;
         }
 
@@ -82,7 +65,7 @@ public class LocationResponse extends Response {
             this.longitude = longitude;
         }
 
-        public int getLatitude() {
+        public double getLatitude() {
             return latitude;
         }
 
@@ -128,14 +111,6 @@ public class LocationResponse extends Response {
 
         public void setBanned(boolean banned) {
             this.banned = banned;
-        }
-
-        public boolean isEnabled() {
-            return enabled;
-        }
-
-        public void setEnabled(boolean enabled) {
-            this.enabled = enabled;
         }
 
         public String getNfc() {
