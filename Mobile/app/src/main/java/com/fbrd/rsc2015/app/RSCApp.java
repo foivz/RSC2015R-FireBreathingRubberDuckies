@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.facebook.FacebookSdk;
+import com.fbrd.rsc2015.app.di.component.DaggerAppComponent;
 
 /**
  * Created by david on 21.11.2015..
@@ -18,7 +19,7 @@ public class RSCApp extends Application {
         super.onCreate();
         FacebookSdk.sdkInitialize(this);
         setInstance(this);
-//        DaggerAppComponent.create().inject(this);
+        DaggerAppComponent.create().inject(this);
     }
 
     public static void setInstance(RSCApp instance) {
