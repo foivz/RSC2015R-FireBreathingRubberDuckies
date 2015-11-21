@@ -30,6 +30,7 @@ public class LoginInteractorGoogleImpl implements LoginInteractorGoogle {
     private GoogleApiClient client;
     private AppServiceImpl.AppService service;
     private String token;
+    private String regId;
 
     public LoginInteractorGoogleImpl(Activity activity, GoogleApiClient client, AppServiceImpl.AppService service) {
         this.activity = activity;
@@ -38,13 +39,14 @@ public class LoginInteractorGoogleImpl implements LoginInteractorGoogle {
     }
 
     @Override
-    public void startLogin() {
+    public void startLogin(String regId) {
+        this.regId = regId;
         GoogleApiUtil.startGoogleSignIn(client, activity);
     }
 
     @Override
     public void completeLogin(String googleToken) {
-        service.loginGoogle(googleToken)
+        service.loginGoogle(googleToken, regId)
                 .flatMap(lfr -> {
                     token = lfr.getToken();
                     return service.getUser(ServiceUtil.formatToken(lfr.getToken()), lfr.getId());

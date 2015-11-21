@@ -86,7 +86,7 @@ public class AppServiceImpl {
 
         @FormUrlEncoded
         @POST("/auth/facebook")
-        Observable<LoginSocialResponse> loginFacebook(@Field("accessToken") String accessToken);
+        Observable<LoginSocialResponse> loginFacebook(@Field("accessToken") String accessToken, @Field("registrationId") String regId);
 
         @FormUrlEncoded
         @POST("/api/1/test/email")
@@ -97,7 +97,7 @@ public class AppServiceImpl {
 
         @FormUrlEncoded
         @POST("/auth/google")
-        Observable<LoginSocialResponse> loginGoogle(@Field("code") String code);
+        Observable<LoginSocialResponse> loginGoogle(@Field("code") String code, @Field("registrationId") String regId);
 
         @FormUrlEncoded
         @PUT("/api/1/users/{id}")

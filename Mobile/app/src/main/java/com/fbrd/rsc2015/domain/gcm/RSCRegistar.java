@@ -45,4 +45,5 @@ public class RSCRegistar extends GcmRegistar {
     public void setOnErrorListener(OnErrorListener onErrorListener) {
         this.onErrorListener = onErrorListener;
     }
+
 }

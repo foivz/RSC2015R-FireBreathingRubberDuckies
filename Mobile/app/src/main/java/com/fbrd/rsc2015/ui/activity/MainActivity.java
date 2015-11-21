@@ -1,9 +1,9 @@
 package com.fbrd.rsc2015.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +18,7 @@ import com.fbrd.rsc2015.app.di.component.DaggerMainComponent;
 import com.fbrd.rsc2015.app.di.module.MainModule;
 import com.fbrd.rsc2015.domain.model.response.FeedItem;
 import com.fbrd.rsc2015.ui.presenter.MainPresenter;
+import com.google.android.gms.games.Game;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.squareup.picasso.Picasso;
@@ -64,13 +65,16 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
         listFeed.setLayoutManager(new LinearLayoutManager(this));
         listFeed.setAdapter(adapter);
         adapter.setViewEventListener((i, o, i1, view) -> {
-
+            openUrl(((FeedItem) o).getUrl());
         });
     }
 
     @Override
     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
         switch (position) {
+            case 3:
+                startActivity(new Intent(this, GameActivity.class));
+                break;
             case 6:
                 presenter.logout();
                 break;
@@ -123,10 +127,10 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
         super.onPause();
     }
 
-    private void openUrl(String url){
-        /*CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+    private void openUrl(String url) {
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         builder.setShowTitle(true);
         CustomTabsIntent intent = builder.build();
-        intent.launchUrl(this, Uri.parse(someUrl));*/
+        intent.launchUrl(this, Uri.parse(url));
     }
 }

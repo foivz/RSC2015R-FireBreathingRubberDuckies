@@ -7,7 +7,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
  */
 public interface LoginInteractorGoogle {
 
-    void startLogin();
+    void startLogin(String regId);
 
     void completeLogin(String token);
 

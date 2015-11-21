@@ -5,6 +5,6 @@ package com.example.loginmodule.interactor;
  */
 public interface LoginInteractorFacebook {
 
-    void login();
+    void login(String registrationId);
 
 }
