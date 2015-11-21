@@ -44,8 +44,9 @@ namespace src.Providers
 
             if (user == null || !user.Enabled || !result || await userManager.IsLockedOutAsync(user.Id))
             {
-                if (!result)
-                    await userManager.AccessFailedAsync(user.Id);
+                if (user != null)
+                    if (!result)
+                        await userManager.AccessFailedAsync(user.Id);
 
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;

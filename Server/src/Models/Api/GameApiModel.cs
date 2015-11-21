@@ -13,5 +13,6 @@ namespace src.Models.Api
         public bool Finished { get; set; }
         public TeamApiModel ChallengerOne { get; set; }
         public TeamApiModel ChallengerTwo { get; set; }
+        public long? MapId { get; set; }
     }
 }

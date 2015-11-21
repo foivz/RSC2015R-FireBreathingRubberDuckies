@@ -297,6 +297,7 @@
     <Compile Include="Controllers\Api\AuthApiController.cs" />
     <Compile Include="Controllers\Api\ExternalAuthApiController.cs" />
     <Compile Include="Controllers\Api\GameApiController.cs" />
+    <Compile Include="Controllers\Api\MapApiController.cs" />
     <Compile Include="Controllers\Api\RolesApiController.cs" />
     <Compile Include="Controllers\Api\TeamApiController.cs" />
     <Compile Include="Controllers\Api\UsersApiController.cs" />
@@ -358,6 +359,10 @@
     <Compile Include="Migrations\201511211851196_ModelUpdate.Designer.cs">
       <DependentUpon>201511211851196_ModelUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511211932433_MapsAddedToTheGame.cs" />
+    <Compile Include="Migrations\201511211932433_MapsAddedToTheGame.Designer.cs">
+      <DependentUpon>201511211932433_MapsAddedToTheGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Api\AddMemberApiModel.cs" />
     <Compile Include="Models\Api\CreateGameApiModel.cs" />
     <Compile Include="Models\Api\CreateUserApiModel.cs" />
@@ -396,8 +401,10 @@
     <Compile Include="Models\Api\ExternalLoginModel.cs" />
     <Compile Include="Models\Api\RegisterApiModel.cs" />
     <Compile Include="Models\Api\TestEmailModel.cs" />
+    <Compile Include="Models\Coords.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\WebRtc.cs" />
@@ -470,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511211851196_ModelUpdate.resx">
       <DependentUpon>201511211851196_ModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211932433_MapsAddedToTheGame.resx">
+      <DependentUpon>201511211932433_MapsAddedToTheGame.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

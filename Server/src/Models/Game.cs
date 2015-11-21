@@ -18,5 +18,8 @@ namespace src.Models
         public long? ChallengerTwoId { get; set; }
         [ForeignKey("ChallengerTwoId")]
         public Team ChallengerTwo { get; set; }
+        public long? MapId { get; set; }
+        [ForeignKey("MapId")]
+        public virtual Map Map { get; set; }
     }
 }

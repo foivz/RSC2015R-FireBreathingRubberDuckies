@@ -50,6 +50,8 @@ namespace src.Models
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Game> Games { get; set; }
         public virtual DbSet<WebRtc> RTCs { get; set; }
+        public virtual DbSet<Map> Maps { get; set; }
+        public virtual DbSet<Coords> Coords { get; set; }
         public DatabaseContext()
             : base("FBRDOnline", throwIfV1Schema: false)
         {
