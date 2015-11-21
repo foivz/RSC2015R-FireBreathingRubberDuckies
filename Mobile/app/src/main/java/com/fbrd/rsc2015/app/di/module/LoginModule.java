@@ -10,6 +10,7 @@ import com.example.loginmodule.service.app.AppServiceImpl;
 import com.facebook.CallbackManager;
 import com.facebook.internal.CallbackManagerImpl;
 import com.fbrd.rsc2015.app.RSCApp;
+import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.ui.activity.LoginActivity;
 import com.fbrd.rsc2015.ui.presenter.LoginPresenter;
 import com.google.android.gms.auth.api.Auth;
@@ -36,13 +37,13 @@ public class LoginModule {
     }
 
     @Provides
-    LoginActivity loginActivity(){
+    LoginActivity loginActivity() {
         return loginActivity;
     }
 
     @Provides
-    LoginPresenter loginPresenter(LoginInteractor loginInteractor, LoginActivity view, LoginInteractorFacebook loginInteractorFacebook, LoginInteractorGoogle loginInteractorGoogle) {
-        return new LoginPresenter(view, loginInteractor, loginInteractorFacebook, loginInteractorGoogle);
+    LoginPresenter loginPresenter(LoginInteractor loginInteractor, LoginActivity view, LoginInteractorFacebook loginInteractorFacebook, LoginInteractorGoogle loginInteractorGoogle, RSCPreferences preferences) {
+        return new LoginPresenter(view, loginInteractor, loginInteractorFacebook, loginInteractorGoogle, preferences);
     }
 
     @Provides

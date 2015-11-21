@@ -3,15 +3,17 @@ package com.fbrd.rsc2015.ui.presenter;
 import com.example.loginmodule.interactor.LoginInteractor;
 import com.example.loginmodule.interactor.LoginInteractorFacebook;
 import com.example.loginmodule.interactor.LoginInteractorGoogle;
-import com.example.loginmodule.interactor.RegistrationInteractor;
 import com.example.loginmodule.model.bus.ZET;
 import com.example.loginmodule.model.event.LoginSuccessEvent;
 import com.example.loginmodule.model.event.error.LoginErrorEvent;
+import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.ui.activity.LoginActivity;
 
 import javax.inject.Inject;
 
 import de.halfbit.tinybus.Subscribe;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by david on 21.11.2015..
@@ -22,13 +24,14 @@ public class LoginPresenter {
     private LoginInteractor loginInteractor;
     private LoginInteractorFacebook loginInteractorFacebook;
     private LoginInteractorGoogle loginInteractorGoogle;
+    private RSCPreferences preferences;
 
-    @Inject
-    public LoginPresenter(LoginActivity view, LoginInteractor loginInteractor, LoginInteractorFacebook loginInteractorFacebook, LoginInteractorGoogle loginInteractorGoogle) {
+    public LoginPresenter(LoginActivity view, LoginInteractor loginInteractor, LoginInteractorFacebook loginInteractorFacebook, LoginInteractorGoogle loginInteractorGoogle, RSCPreferences preferences) {
         this.view = view;
         this.loginInteractor = loginInteractor;
         this.loginInteractorFacebook = loginInteractorFacebook;
         this.loginInteractorGoogle = loginInteractorGoogle;
+        this.preferences = preferences;
     }
 
     public void attemptSignIn() {
@@ -49,13 +52,22 @@ public class LoginPresenter {
     }
 
     public void completeSignInGoogle(String token) {
-
+        loginInteractorGoogle.completeLogin(token);
     }
 
     @Subscribe
     public void onLoginSuccess(LoginSuccessEvent event) {
-        view.dismissLoading();
-        view.proceed();
+        preferences.storeUser(event.getUser())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(success -> {
+                    view.dismissLoading();
+                    if (success) {
+                        view.proceed();
+                    } else {
+                        view.showError("An error has occured");
+                    }
+                });
     }
 
     @Subscribe

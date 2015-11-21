@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.loginmodule.util.GoogleApiUtil;
@@ -93,6 +94,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
         String token = GoogleApiUtil.googleSignInToken(requestCode, resultCode, data);
+        Log.i("DAM", "Token: " + token);
         loginPresenter.completeSignInGoogle(token);
     }
 
