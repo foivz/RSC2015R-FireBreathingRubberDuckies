@@ -109,5 +109,41 @@ namespace src.Controllers.Api
             }
             return this.BadRequest(new ApiResponse(400, model));
         }
+
+        [HttpGet, Route("summary/{id:long}")]
+        public async Task<IHttpActionResult> MatchSummary(long id)
+        {
+            var wanted = this.db.Games.Where(x => x.Id.Equals(id)).Include(x => x.ChallengerOne).Include(x => x.ChallengerTwo);
+            if (!(await wanted.CountAsync()).Equals(0))
+            {
+                var game = await wanted.FirstAsync();
+                int totalKills = 0;
+                foreach (User user in game.ChallengerOne.Users)
+                {
+                    if (user.Killed)
+                    {
+                        totalKills += 1;
+                    }
+                }
+                foreach (User user in game.ChallengerTwo.Users)
+                {
+                    if (user.Killed)
+                    {
+                        totalKills += 1;
+                    }
+                }
+
+                var summary = new MatchSummaryApiModel()
+                {
+                    Length = game.Length,
+                    ChallengerOne = Mapper.Map<TeamApiModel>(game.ChallengerOne),
+                    ChallengerTwo = Mapper.Map<TeamApiModel>(game.ChallengerTwo),
+                    TotalKills = totalKills
+                };
+
+                return this.Ok(new ApiResponse(200, summary));
+            }
+            return this.NotFound(new ApiResponse(404, id));
+        }
     }
 }

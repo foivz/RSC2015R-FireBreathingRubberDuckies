@@ -360,6 +360,7 @@
     <Compile Include="Controllers\Api\NotificationApiController.cs" />
     <Compile Include="Models\Api\GameApiModel.cs" />
     <Compile Include="Models\Api\LocationApiModel.cs" />
+    <Compile Include="Models\Api\MatchSummaryApiModel.cs" />
     <Compile Include="Models\Api\PlayerMarkedApiModel.cs" />
     <Compile Include="Models\Api\RoleApiModel.cs" />
     <Compile Include="Models\Api\TeamApiModel.cs" />
