@@ -3,7 +3,9 @@ package com.fbrd.rsc2015.ui.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.webkit.WebViewClient;
 
+import com.dmacan.lightandroid.ui.custom.view.SexyWebView;
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.app.di.component.DaggerSplashComponent;
 import com.fbrd.rsc2015.app.di.module.ApiModule;
@@ -13,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -20,12 +24,16 @@ public class SplashActivity extends AppCompatActivity {
 
     @Inject
     RSCPreferences preferences;
+    @Bind(R.id.splashView)
+    SexyWebView sexyWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        ButterKnife.bind(this);
         DaggerSplashComponent.builder().apiModule(new ApiModule()).build().inject(this);
+//        sexyWebView.load("http://95.85.26.58:6767/2dbbbb50-9066-11e5-b38a-5b7a2be8896c");
         splash();
     }
 
