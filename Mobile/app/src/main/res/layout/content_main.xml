@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/listFeed"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.fbrd.rsc2015.ui.activity.MainActivity"
     tools:showIn="@layout/activity_main">
 
-</android.support.v7.widget.RecyclerView>
+    <org.buraktamturk.loadingview.LoadingView
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listFeed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </org.buraktamturk.loadingview.LoadingView>
+
+</RelativeLayout>

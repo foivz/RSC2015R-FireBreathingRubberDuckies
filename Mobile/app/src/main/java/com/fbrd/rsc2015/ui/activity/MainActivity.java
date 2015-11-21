@@ -6,15 +6,19 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.app.di.component.DaggerMainComponent;
 import com.fbrd.rsc2015.app.di.module.MainModule;
+import com.fbrd.rsc2015.domain.model.FeedItem;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.ui.presenter.MainPresenter;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -30,10 +34,16 @@ import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.squareup.picasso.Picasso;
 
+import org.buraktamturk.loadingview.LoadingView;
+
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.nlopez.smartadapters.adapters.RecyclerMultiAdapter;
 
 public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerItemClickListener, AccountHeader.OnAccountHeaderListener {
 
@@ -45,6 +55,13 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
     Drawer drawer;
     @Inject
     MainPresenter presenter;
+    @Inject
+    @Named("list_feed")
+    RecyclerMultiAdapter adapter;
+    @Bind(R.id.listFeed)
+    RecyclerView listFeed;
+    @Bind(R.id.loading)
+    LoadingView loadingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
         imgAvatar = (ImageView) drawer.getHeader().findViewById(R.id.imageView);
         txtUsername = (TextView) drawer.getHeader().findViewById(R.id.txtUserName);
         presenter.onViewCreate();
+        listFeed.setLayoutManager(new LinearLayoutManager(this));
+        listFeed.setAdapter(adapter);
     }
 
     @Override
@@ -75,4 +94,23 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
     public void showUsername(String username) {
         txtUsername.setText(username);
     }
+
+    public void showFeed(List<FeedItem> items) {
+        loadingView.setLoading(false);
+        adapter.setItems(items);
+    }
+
+    public void showError(String message) {
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void dismissLoading(){
+        loadingView.setLoading(false);
+    }
+
+    public void showLoading(String message) {
+        loadingView.setText(message);
+        loadingView.setLoading(true);
+    }
+
 }
