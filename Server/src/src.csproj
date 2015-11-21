@@ -296,6 +296,7 @@
     <Compile Include="Controllers\Abstract\AbstractController.cs" />
     <Compile Include="Controllers\Api\AuthApiController.cs" />
     <Compile Include="Controllers\Api\ExternalAuthApiController.cs" />
+    <Compile Include="Controllers\Api\GameApiController.cs" />
     <Compile Include="Controllers\Api\RolesApiController.cs" />
     <Compile Include="Controllers\Api\TeamApiController.cs" />
     <Compile Include="Controllers\Api\UsersApiController.cs" />
@@ -338,6 +339,7 @@
       <DependentUpon>201511211409455_LongitudeAndLatSupport.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Api\AddMemberApiModel.cs" />
+    <Compile Include="Models\Api\CreateGameApiModel.cs" />
     <Compile Include="Models\Api\CreateUserApiModel.cs" />
     <Compile Include="Controllers\Api\NotificationApiController.cs" />
     <Compile Include="Models\Api\GameApiModel.cs" />
@@ -375,6 +377,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\WebRtc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Providers\JwtFormatProvider.cs" />

@@ -5,6 +5,7 @@ using src.Helpers.Api.Hubs;
 using src.Helpers.Api.Response;
 using src.Helpers.Email;
 using src.Helpers.PushNotifications;
+using src.Models;
 using src.Models.Api;
 using System;
 using System.Collections.Generic;
@@ -64,6 +65,12 @@ namespace src.Controllers
             var obj = await amazon.CreateRequest(testStream, ".pdf").SaveObject();
 
             return this.Ok(new ApiResponse(200, obj));
+        }
+
+        [HttpPost, Route("webrtc")]
+        public async Task<IHttpActionResult> WebRTC(WebRtc model)
+        {
+            return this.Ok();
         }
     }
 }
