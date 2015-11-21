@@ -158,7 +158,20 @@ namespace src.Controllers.Api
 
                 var result = await this.userManager.UpdateAsync(this.CurrentUser);
 
-                //if (this.IsPointInPolygon(null, model.Long, model.Lat)) ;
+                var map = await this.db.Maps.FindAsync(model.MapId);
+
+                if (!this.IsPointInPolygon(null, model.Long, model.Lat))
+                {
+                    new GcmProvider().CreateNotification(new PushNotificationData
+                    {
+                        Action = 5,
+                        Message = "Out of boundaries!",
+                        Data = new
+                        {
+                            MapId = map.Id
+                        }
+                    }, this.CurrentUser.RegistrationId).SendAsync().Wait();
+                }
 
                 if (result.Succeeded)
                     return this.Ok(new ApiResponse(200, Mapper.Map<UserApiModel>(this.CurrentUser)));
@@ -251,15 +264,15 @@ namespace src.Controllers.Api
             return this.NotFound(new ApiResponse(404, id));
         }
 
-        private bool IsPointInPolygon(List<dynamic> poly, double longitude, double latitude)
+        private bool IsPointInPolygon(List<Coords> poly, double longitude, double latitude)
         {
             int i, j;
             bool c = false;
             for (i = 0, j = poly.Count - 1; i < poly.Count; j = i++)
             {
-                if ((((poly[i].Latitude <= latitude) && (latitude < poly[j].Latitude)) |
-                    ((poly[j].Latitude <= latitude) && (latitude < poly[i].Latitude))) &&
-                    (longitude < (poly[j].Longitude - poly[i].Longitude) * (latitude - poly[i].Latitude) / (poly[j].Latitude - poly[i].Latitude) + poly[i].Longitude))
+                if ((((poly[i].Lat <= latitude) && (latitude < poly[j].Lat)) |
+                    ((poly[j].Lat <= latitude) && (latitude < poly[i].Lat))) &&
+                    (longitude < (poly[j].Lng - poly[i].Lng) * (latitude - poly[i].Lat) / (poly[j].Lat - poly[i].Lat) + poly[i].Lng))
                     c = !c;
             }
             return c;

@@ -12,5 +12,7 @@ namespace src.Models.Api
         public double Long { get; set; }
         [Required]
         public double Lat { get; set; }
+        [Required]
+        public long MapId { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace src.Models.Api
     {
         public string Code { get; set; }
         public string AccessToken { get; set; }
+        public string RegistrationId { get; set; }
     }
 }

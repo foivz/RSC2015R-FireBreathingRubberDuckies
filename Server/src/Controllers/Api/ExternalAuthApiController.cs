@@ -70,6 +70,7 @@ namespace src.Controllers.Api
                     UserName = profile.Name,
                     EmailConfirmed = true,
                     Avatar = profile.Picture.Data.Url,
+                    RegistrationId = model.RegistrationId,
                     Enabled = true
                 };
 
@@ -86,6 +87,10 @@ namespace src.Controllers.Api
 
             if (localUser != null)
             {
+                localUser.RegistrationId = model.RegistrationId;
+
+                var result = await this.userManager.UpdateAsync(localUser);
+
                 if (!localUser.Logins.Any(x => x.LoginProvider.Equals("facebook") && x.ProviderKey.Equals(profile.Id)))
                 {
                     var addLogin = await userManager.AddLoginAsync(localUser.Id, new UserLoginInfo("facebook", profile.Id));
@@ -131,6 +136,7 @@ namespace src.Controllers.Api
                     Email = profile.Email,
                     UserName = profile.Name,
                     EmailConfirmed = true,
+                    RegistrationId = model.RegistrationId,
                     Avatar = profile.Picture,
                     Enabled = true
                 };
@@ -148,6 +154,10 @@ namespace src.Controllers.Api
 
             if (localUser != null)
             {
+                localUser.RegistrationId = model.RegistrationId;
+
+                var result = await this.userManager.UpdateAsync(localUser);
+
                 if (!localUser.Logins.Any(x => x.LoginProvider.Equals("facebook") && x.ProviderKey.Equals(profile.Sub)))
                 {
                     var addLogin = await userManager.AddLoginAsync(localUser.Id, new UserLoginInfo("facebook", profile.Sub));
