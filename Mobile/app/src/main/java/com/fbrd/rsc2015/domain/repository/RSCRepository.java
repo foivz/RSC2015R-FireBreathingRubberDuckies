@@ -15,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.PUT;
@@ -71,9 +73,9 @@ public class RSCRepository {
         @GET("/api/1/notifications")
         Observable<FeedResponse> fetchNotifications(@Header("Authorization") String token);
 
+        @FormUrlEncoded
         @PUT("/api/1/games")
-        Observable<LocationResponse> pushLocation(@Header("Authorization") String token);
-
+        Observable<LocationResponse> pushLocation(@Header("Authorization") String token, @Field("lat") double lat, @Field("long") double lon, @Field("mapId") long mapId);
 
     }
 
