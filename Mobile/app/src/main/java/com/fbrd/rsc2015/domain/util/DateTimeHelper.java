@@ -27,17 +27,14 @@ public class DateTimeHelper {
         this.startedAt = startedAt;
         this.endedAt = endedAt;
         this.duration = duration;
-        calculateElapsedTime();
     }
 
-    private void calculateElapsedTime() {
+    private String calculateElapsedTime() {
         int hours, minutes, seconds;
 
         if(duration > 60){
             startedAt = startedAt.plusMinutes(duration);
         }
-
-        SimpleDateFormat now = new SimpleDateFormat("HH:mm:ss");
         Date currDate = new Date();
 
         hours = Hours.hoursBetween(new DateTime(startedAt), new DateTime(currDate)).getHours();
@@ -48,6 +45,8 @@ public class DateTimeHelper {
         finalTime = ":" + seconds;
 
         Log.e("FinalTime", finalTime);
+
+        return finalTime;
 
     }
 }
