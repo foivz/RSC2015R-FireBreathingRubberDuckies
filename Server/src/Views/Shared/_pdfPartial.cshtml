@@ -1,0 +1,111 @@
+﻿@using src.Models;
+@model Game
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <br /><br />
+    <table style="margin: auto; width:100%;">
+        <tr>
+            <td>
+                <h2 style="text-align: center;">Game Stats</h2>
+            </td>
+        </tr>
+    </table>
+    <h3>Id:</h3>
+    <p>@Model.Id</p>
+    <h3>Length:</h3>
+    <p>@Model.Length</p>
+    <table border="1" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Started</th>
+                <th>Finished</th>
+                <th>Start time</th>
+                <th>End time</th>
+            </tr>
+        </thead>
+        @{
+            float total = 0;
+        }
+        <tbody>
+
+            <tr style="text-align:center;">
+                <td>@Model.Started</td>
+                <td>@Model.Finished</td>
+                <td>@Model.Start</td>
+                <td>@Model.End</td>
+            </tr>
+
+        </tbody>
+    </table>
+    <h3>Team @Model.ChallengerOne.Name:</h3>
+    <table border="1" style="width: 100%; text-align:center;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Last name</th>
+                <th>Username</th>
+                <th>Killed</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model.ChallengerOne.Users.Count > 0)
+            {
+                foreach (var member in Model.ChallengerOne.Users)
+                {
+
+
+
+
+                    <tr>
+                        <td>@member.FirstName</td>
+                        <td>@member.LastName</td>
+                        <td>@member.UserName</td>
+                        <td>@member.Killed</td>
+                    </tr>
+
+
+                }
+
+            }
+        </tbody>
+    </table>
+
+    <h3>Team @Model.ChallengerTwo.Name:</h3>
+    <table border="1" style="width: 100%; text-align:center;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Last name</th>
+                <th>Username</th>
+                <th>Killed</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ChallengerTwo.Users.Count > 0)
+            {
+
+                foreach (var member in Model.ChallengerTwo.Users)
+                {
+
+
+
+
+                    <tr>
+                        <td>@member.FirstName</td>
+                        <td>@member.LastName</td>
+                        <td>@member.UserName</td>
+                        <td>@member.Killed</td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
