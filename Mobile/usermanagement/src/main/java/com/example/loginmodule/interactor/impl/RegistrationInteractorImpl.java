@@ -27,10 +27,9 @@ public class RegistrationInteractorImpl implements RegistrationInteractor {
     private FileUploader fileUploader;
     private String token;
 
-    public RegistrationInteractorImpl(AppServiceImpl.AppService appService, FileUploader fileUploader) {
+    public RegistrationInteractorImpl(AppServiceImpl.AppService appService) {
         this.appService = appService;
-        this.fileUploader = fileUploader;
-    }
+}
 
     @Override
     public void register(String email, String username, String password, String firstName, String lastName, String registrationId) {

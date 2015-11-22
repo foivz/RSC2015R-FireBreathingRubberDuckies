@@ -3,11 +3,9 @@ package com.fbrd.rsc2015.ui.activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -41,6 +39,8 @@ import com.fbrd.rsc2015.domain.util.CommandParser;
 import com.fbrd.rsc2015.ui.fragment.MapFragment;
 import com.fbrd.rsc2015.ui.fragment.NfcFragment;
 import com.fbrd.rsc2015.ui.fragment.StatsFragment;
+import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.fonts.SimpleLineIconsIcons;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -95,6 +95,7 @@ public class GameActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        fab.setImageDrawable(new IconDrawable(this, SimpleLineIconsIcons.icon_microphone).actionBarSize().colorRes(android.R.color.white));
     }
 
     @OnClick(R.id.fab)

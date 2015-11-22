@@ -2,6 +2,7 @@ package com.fbrd.rsc2015.domain.repository;
 
 import com.example.loginmodule.model.response.RegistrationResponse;
 import com.fbrd.rsc2015.domain.model.response.CommunicationsResponse;
+import com.fbrd.rsc2015.domain.model.response.DeathResponse;
 import com.fbrd.rsc2015.domain.model.response.FeedResponse;
 import com.fbrd.rsc2015.domain.model.response.GamesResponse;
 import com.fbrd.rsc2015.domain.model.response.LocationResponse;
@@ -86,6 +87,10 @@ public class RSCRepository {
         @PUT("/api/1/games/nfc")
         Observable<PairingResponse> pair(@Header("Authorization") String token, @Field("nfc") String nfc, @Field("gameId") long gameId);
 
+        @FormUrlEncoded
+        @PUT("/api/1/games/marked")
+        Observable<Void> killYourself(@Header("Authorization") String token, @Field("nfc") String nfc, @Field("gameId") long gameid);
     }
 
 }
+

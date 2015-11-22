@@ -71,10 +71,11 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
     @Override
     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
         switch (position) {
-            case 3:
+            case 2:
                 startActivity(new Intent(this, GameActivity.class));
+                drawer.setSelectionAtPosition(1);
                 break;
-            case 6:
+            case 5:
                 presenter.logout();
                 break;
         }
@@ -83,7 +84,12 @@ public class MainActivity extends AppCompatActivity implements Drawer.OnDrawerIt
 
 
     public void showAvatar(String image) {
-        Picasso.with(this).load(image).into(imgAvatar);
+        if(image == null){
+            Picasso.with(this).load(R.drawable.avatar_big).into(imgAvatar);
+        }
+        else{
+            Picasso.with(this).load(image).into(imgAvatar);
+        }
     }
 
     public void showUsername(String username) {

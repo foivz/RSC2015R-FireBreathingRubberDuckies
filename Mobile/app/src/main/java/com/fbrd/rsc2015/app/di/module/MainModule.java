@@ -11,12 +11,11 @@ import com.fbrd.rsc2015.ui.activity.MainActivity;
 import com.fbrd.rsc2015.ui.presenter.MainPresenter;
 import com.fbrd.rsc2015.ui.view.FeedItemView;
 import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.fonts.SimpleLineIconsIcons;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.icons.MaterialDrawerFont;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialize.color.Material;
 
 import javax.inject.Named;
 
@@ -66,12 +65,12 @@ public class MainModule {
                 .withActionBarDrawerToggleAnimated(true)
                 .withHeader(R.layout.nav_header_main)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("What's new"),
-                        new PrimaryDrawerItem().withName("My team"),
-                        new PrimaryDrawerItem().withName("Game"),
+                        new PrimaryDrawerItem().withName("What's new").withIcon(new IconDrawable(view, SimpleLineIconsIcons.icon_feed).actionBarSize()),
+//                        new PrimaryDrawerItem().withName("My team"),
+                        new PrimaryDrawerItem().withName("Game").withIcon(new IconDrawable(view, SimpleLineIconsIcons.icon_game_controller).actionBarSize()),
                         new DividerDrawerItem(),
-                        new PrimaryDrawerItem().withName("Settings"),
-                        new PrimaryDrawerItem().withName("Logout")
+                        new PrimaryDrawerItem().withName("Settings").withIcon(new IconDrawable(view, SimpleLineIconsIcons.icon_settings).actionBarSize()),
+                        new PrimaryDrawerItem().withName("Logout").withIcon(new IconDrawable(view, SimpleLineIconsIcons.icon_logout).actionBarSize())
                 ).withOnDrawerItemClickListener(onDrawerItemClickListener)
                 .build();
     }
