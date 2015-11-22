@@ -21,6 +21,7 @@ import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.PUT;
+import retrofit.http.Path;
 import ru.noties.flatten.FlattenJsonDeserializer;
 import ru.noties.flatten.Flattened;
 import rx.Observable;
@@ -79,7 +80,7 @@ public class RSCRepository {
         Observable<LocationResponse> pushLocation(@Header("Authorization") String token, @Field("lat") double lat, @Field("long") double lon, @Field("mapId") long mapId);
 
         @GET("/api/1/games/{id}")
-        Observable<GamesResponse> getGame(@Header("Authorization") String token, @Field("id") long gameId);
+        Observable<GamesResponse> getGame(@Header("Authorization") String token, @Path("id") long gameId);
 
     }
 

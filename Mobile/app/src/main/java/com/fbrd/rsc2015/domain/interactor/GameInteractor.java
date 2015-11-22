@@ -22,7 +22,7 @@ public class GameInteractor {
         this.api = api;
     }
 
-    void fetchGames(String token, long gameId) {
+   public void fetchGames(String token, long gameId) {
         api.getGame(ServiceUtil.formatToken(token), gameId)
                 .flatMapIterable(GamesResponse::getList)
                 .map(grrrr -> {
