@@ -1,8 +1,10 @@
 package com.fbrd.rsc2015.app.di.module;
 
 import com.fbrd.lightandroidgoodies.SpeechRecognizer;
+import com.fbrd.rsc2015.domain.interactor.DeathInteractor;
 import com.fbrd.rsc2015.domain.interactor.GameInteractor;
 import com.fbrd.rsc2015.domain.interactor.PairingInteractor;
+import com.fbrd.rsc2015.domain.interactor.ReportInteractor;
 import com.fbrd.rsc2015.domain.manager.NFCManager;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.domain.repository.RSCRepository;
@@ -72,4 +74,13 @@ public class GameModule {
         return new SpeechRecognizer(view);
     }
 
+    @Provides
+    DeathInteractor deathInteractor(RSCRepository.Api api) {
+        return new DeathInteractor(api);
+    }
+
+    @Provides
+    ReportInteractor reportInteractor(RSCRepository.Api api){
+        return new ReportInteractor(api);
+    }
 }

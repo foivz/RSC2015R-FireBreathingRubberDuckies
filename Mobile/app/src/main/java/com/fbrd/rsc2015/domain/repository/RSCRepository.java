@@ -7,6 +7,7 @@ import com.fbrd.rsc2015.domain.model.response.FeedResponse;
 import com.fbrd.rsc2015.domain.model.response.GamesResponse;
 import com.fbrd.rsc2015.domain.model.response.LocationResponse;
 import com.fbrd.rsc2015.domain.model.response.PairingResponse;
+import com.fbrd.rsc2015.domain.model.response.SummaryResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
@@ -90,6 +91,9 @@ public class RSCRepository {
         @FormUrlEncoded
         @PUT("/api/1/games/marked")
         Observable<Void> killYourself(@Header("Authorization") String token, @Field("nfc") String nfc, @Field("gameId") long gameid);
+
+        @GET("/api/1/games/byid/{id}")
+        Observable<SummaryResponse> getSummary(@Path("id") long gameId);
     }
 
 }
