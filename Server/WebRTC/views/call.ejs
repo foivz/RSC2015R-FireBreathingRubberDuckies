@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Call me Painty</title>
+  <link rel="stylesheet" type="text/css" href="/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div id="display"></div>
+  </div>
+
+  <footer>
+    <div class="wrapper">
+      <a href="/new">Start another call</a>
+    </div>
+  </footer>
+  
+  <script type="text/javascript">
+    window.API_KEY = "<%= apiKey %>";
+    window.call = <%- JSON.stringify(call, null, 2) %>;
+  </script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.14/peer.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
