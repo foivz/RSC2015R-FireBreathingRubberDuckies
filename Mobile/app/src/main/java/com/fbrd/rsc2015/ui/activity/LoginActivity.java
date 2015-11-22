@@ -29,9 +29,6 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-
     @Bind(R.id.etUsername)
     MaterialEditText etUsername;
 
@@ -53,7 +50,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
         DaggerLoginComponent.builder().loginModule(new LoginModule(this, this)).build().inject(this);
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);

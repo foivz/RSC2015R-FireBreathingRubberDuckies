@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#c92059</color>
+    <color name="colorPrimaryLight">#de3b72</color>
     <color name="colorPrimaryDark">#8c163e</color>
-    <color name="colorAccent">#0076c9</color>
+    <color name="colorAccent">#00c985</color>
+    <color name="colorAccentLigth">#33e1a6</color>
     <color name="google_plus">#dd4b39</color>
     <color name="google_plus_dark">#ffb23629</color>
     <color name="facebook_default">#5878D0</color>

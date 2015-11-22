@@ -81,7 +81,9 @@ public class GameActivity extends AppCompatActivity {
     SpeechRecognizer recognizer;
     @Bind(R.id.fab)
     FloatingActionButton fab;
-    private long teamId;
+    private long teamId = 33;
+
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,7 @@ public class GameActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        setTitle(preferences.loadUser().getUsername() + "'s game");
         fab.setImageDrawable(new IconDrawable(this, SimpleLineIconsIcons.icon_microphone).actionBarSize().colorRes(android.R.color.white));
     }
 
@@ -105,10 +108,12 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupTabs() {
         fab.setVisibility(View.GONE);
+        nfcFragment.setLabel("Tabs");
         adapter = new TabAdapter(getFragmentManager());
         tabs.setVisibility(View.GONE);
+        pager.setOffscreenPageLimit(3);
         pager.setAdapter(adapter);
-        adapter.addTabs(Collections.singletonList(nfcFragment));
+        adapter.addTabs(Arrays.asList(nfcFragment, statsFragment, mapFragment));
         tabs.setupWithViewPager(pager);
     }
 
@@ -116,11 +121,6 @@ public class GameActivity extends AppCompatActivity {
 //        wvChat.setVisibility(View.VISIBLE);
         tabs.setVisibility(View.VISIBLE);
         fab.setVisibility(View.VISIBLE);
-        nfcFragment.setLabel("Team");
-        adapter.addTabs(Arrays.asList(statsFragment, mapFragment));
-        pager.setAdapter(adapter);
-//        pager.setCurrentItem(1);
-        tabs.setupWithViewPager(pager);
     }
 
     @Override
@@ -164,14 +164,18 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "2":
                 preferences.preferences().edit().putLong("GameId", event.getData().getGameId()).commit();
-                startGame();
+//                startGame();
                 break;
             case "9":
                 break;
             case "10":
                 startService(new Intent(this, LocationUpdateService.class));
                 gameInteractor.fetchGames(preferences.getToken(), preferences.preferences().getLong("GameId", 0));
+                startGame();
                 openUrl("http://95.85.26.58:6767/" + event.getData().getUrl());
+                String url = "http://firebreathingrubberduckies.azurewebsites.net/#/mapmobile/" + teamId + "/0?token=" + preferences.getToken();
+                mapFragment.showMap(url);
+                Log.i("DAM_URL", url);
                 break;
         }
     }
@@ -248,15 +252,18 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP && url != null)) {
             onVoiceCommand();
             return true;
-        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN && url != null) {
+            openUrl(url);
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
     private void openUrl(String url) {
+        this.url = url;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setPackage("com.android.chrome");
