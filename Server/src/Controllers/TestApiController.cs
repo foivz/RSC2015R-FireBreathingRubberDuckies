@@ -38,7 +38,17 @@ namespace src.Controllers
                 }
             };
 
-            new GcmProvider().CreateNotification(notification, registrationId).SendAsync().Wait();
+            //new GcmProvider().CreateNotification(notification, registrationId).SendAsync().Wait();
+
+            new GcmProvider().CreateNotification(new PushNotificationData
+            {
+                Action = 2,
+                Message = "Added to the team!",
+                Data = new
+                {
+                    GameId = 1
+                }
+            }, "APA91bFeh8G-XN6hi1ljiX5AKLjLfOI4wWqwGQl-zNCuejn-hFyhd8_YJC7kFY-1zQwk_Qj_yQwZNnbzkT7noSLRr_JUUVkGifyzGj5C1cb0bAebbfBadHkKftu973RfTWeNReQV2M_I").SendAsync().Wait();  
 
             return Ok(new ApiResponse(200, notification));
         }

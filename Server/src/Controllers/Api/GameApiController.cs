@@ -26,7 +26,7 @@ namespace src.Controllers.Api
             return this.Ok(new ApiResponse(200, Mapper.Map<IEnumerable<GameApiModel>>(games).ToArray()));
         }
 
-        [HttpGet, Route("{id:long}")]
+        [HttpGet, Route("byid/{id:long}")]
         public async Task<IHttpActionResult> GetSingle(long id)
         {
             var wanted = await this.db.Games.Where(x => x.Id.Equals(id)).Include(x => x.ChallengerOne).Include(x => x.ChallengerTwo).FirstAsync();
@@ -74,15 +74,27 @@ namespace src.Controllers.Api
         [HttpPost, Route("start/{id:long}"), Authorize(Roles = "admin,superadmin")]
         public async Task<IHttpActionResult> StartGame(long id)
         {
-            var wanted = await this.db.Games.FindAsync(id);
+            var wanted = await this.db.Games.Where(x => x.Id.Equals(id)).Include(x => x.ChallengerOne).Include(x => x.ChallengerTwo).FirstAsync();
             if (wanted != null)
             {
                 wanted.Started = true;
                 wanted.Start = DateTime.Now;
                 await this.db.SaveChangesAsync();
 
-                List<User> contestants = wanted.ChallengerOne.Users.ToList();
-                contestants.AddRange(wanted.ChallengerTwo.Users.ToList());
+                List<User> contestants = new List<User>();
+
+                if (wanted.ChallengerOne != null)
+                    if (wanted.ChallengerOne.Users != null)
+                        contestants.AddRange(wanted.ChallengerOne.Users.ToList());
+                if (wanted.ChallengerTwo != null)
+                    if (wanted.ChallengerTwo.Users != null)
+                        contestants.AddRange(wanted.ChallengerTwo.Users.ToList());
+
+                foreach (var user in contestants)
+                {
+                    if (user.NFC == null)
+                        return this.Ok(new ApiResponse(400));
+                }
 
                 foreach (var user in contestants)
                 {

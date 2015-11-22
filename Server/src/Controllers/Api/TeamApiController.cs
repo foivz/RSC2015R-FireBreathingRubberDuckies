@@ -69,6 +69,8 @@ namespace src.Controllers.Api
                 if (!team.Users.Contains(member) && await this.userManager.IsInRoleAsync(model.UserId, "user"))
                 {
                     member.Killed = false;
+                    member.Banned = false;
+                    member.NFC = null;
 
                     team.Users.Add(member);
 
@@ -105,6 +107,8 @@ namespace src.Controllers.Api
                     if (!team.Users.Contains(member) && await this.userManager.IsInRoleAsync(model.UserId, "user"))
                     {
                         member.Killed = false;
+                        member.Banned = false;
+                        member.NFC = null;
 
                         team.Users.Add(member);
 
@@ -112,15 +116,13 @@ namespace src.Controllers.Api
 
                         new GcmProvider().CreateNotification(new PushNotificationData
                         {
-                            Action = 1,
+                            Action = 8,
                             Message = "Added to the team!",
                             Data = new
                             {
                                 TeamId = team.Id
                             }
-                        }, member.RegistrationId).SendAsync().Wait();
-
-                        
+                        }, member.RegistrationId).SendAsync().Wait();  
                     }
                 }
                 return this.Ok(new ApiResponse(200));
