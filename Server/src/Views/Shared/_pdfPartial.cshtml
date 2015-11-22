@@ -85,19 +85,20 @@
                         <th>Killed</th>
                     </tr>
                 </thead>
-                @foreach (var member in Model.ChallengerTwo.Users)
-                {
-
-
                 <tbody>
+                    @foreach (var member in Model.ChallengerTwo.Users)
+                    {
 
-                    <tr>
-                        <td>@member.FirstName</td>
-                        <td>@member.LastName</td>
-                        <td>@member.UserName</td>
-                        <td>@member.Killed</td>
-                    </tr>
 
+
+
+                        <tr>
+                            <td>@member.FirstName</td>
+                            <td>@member.LastName</td>
+                            <td>@member.UserName</td>
+                            <td>@member.Killed</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         }

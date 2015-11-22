@@ -386,6 +386,10 @@
     <Compile Include="Migrations\201511212354311_NewFields.Designer.cs">
       <DependentUpon>201511212354311_NewFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511220353296_NewFields1.cs" />
+    <Compile Include="Migrations\201511220353296_NewFields1.Designer.cs">
+      <DependentUpon>201511220353296_NewFields1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Api\AddMemberApiModel.cs" />
     <Compile Include="Models\Api\AndroidGameApiModel.cs" />
     <Compile Include="Models\Api\CreateGameApiModel.cs" />
@@ -508,6 +512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511212354311_NewFields.resx">
       <DependentUpon>201511212354311_NewFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511220353296_NewFields1.resx">
+      <DependentUpon>201511220353296_NewFields1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

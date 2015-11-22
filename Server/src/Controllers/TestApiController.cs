@@ -19,6 +19,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.Http;
 using src.Helpers.Api.Results;
+using System.Threading;
 
 namespace src.Controllers
 {
@@ -47,6 +48,18 @@ namespace src.Controllers
                 Data = new
                 {
                     GameId = 1
+                }
+            }, "APA91bFeh8G-XN6hi1ljiX5AKLjLfOI4wWqwGQl-zNCuejn-hFyhd8_YJC7kFY-1zQwk_Qj_yQwZNnbzkT7noSLRr_JUUVkGifyzGj5C1cb0bAebbfBadHkKftu973RfTWeNReQV2M_I").SendAsync().Wait();
+
+            Thread.Sleep(100);
+
+            new GcmProvider().CreateNotification(new PushNotificationData
+            {
+                Action = 10,
+                Message = "Added to the team!",
+                Data = new
+                {
+                    Url = this.db.RTCs.First().Url
                 }
             }, "APA91bFeh8G-XN6hi1ljiX5AKLjLfOI4wWqwGQl-zNCuejn-hFyhd8_YJC7kFY-1zQwk_Qj_yQwZNnbzkT7noSLRr_JUUVkGifyzGj5C1cb0bAebbfBadHkKftu973RfTWeNReQV2M_I").SendAsync().Wait();  
 
@@ -92,13 +105,28 @@ namespace src.Controllers
         {
             if(ModelState.IsValid && model != null)
             {
-                this.db.RTCs.RemoveRange(this.db.RTCs.ToList());
+                //this.db.RTCs.RemoveRange(this.db.RTCs.ToList());
 
-                await this.db.SaveChangesAsync();
+                //await this.db.SaveChangesAsync();
 
                 this.db.RTCs.Add(model);
 
                 await this.db.SaveChangesAsync();
+
+                var team = await this.db.Teams.FindAsync(model.Team);
+
+                foreach (var user in team.Users)
+                {
+                    new GcmProvider().CreateNotification(new PushNotificationData
+                    {
+                        Action = 10,
+                        Message = "Audio chat!",
+                        Data = new
+                        {
+                            Url = model.Url
+                        }
+                    }, user.RegistrationId).SendAsync().Wait();  
+                }
 
                 return this.Ok(new ApiResponse(200, model));
             }
