@@ -39,7 +39,6 @@ public class StatsFragment extends TabFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_stats, null, false);
         ButterKnife.bind(this, view);
-
         return view;
     }
 
@@ -56,9 +55,9 @@ public class StatsFragment extends TabFragment {
         DateTimeHelper dateTimeHelper = new DateTimeHelper(startTime, duration);
         String remainingTime = dateTimeHelper.calculateElapsedTime();
 
-        timerHours.setText(remainingTime.substring(0,1));
-        timerMinutes.setText(remainingTime.substring(3,4));
-        timerSeconds.setText(remainingTime.substring(5,6));
+        timerHours.setText(remainingTime.substring(0, 1));
+        timerMinutes.setText(remainingTime.substring(3, 4));
+        timerSeconds.setText(remainingTime.substring(5, 6));
     }
 
 
@@ -67,9 +66,4 @@ public class StatsFragment extends TabFragment {
         enemyTeamAlive.setText("Players alive:" + enemyTeam);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }
