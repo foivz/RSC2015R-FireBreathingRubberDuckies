@@ -13,6 +13,9 @@ using src.Helpers.Api.Results;
 using src.Models;
 using System.Data.Entity;
 using src.Helpers.PushNotifications;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace src.Controllers.Api
 {
@@ -229,57 +232,60 @@ namespace src.Controllers.Api
         {
             if (ModelState.IsValid && model != null)
             {
-                if (this.CurrentUser.NFC.Equals(model.NFC))
-                {
-                    this.CurrentUser.Killed = true;
+                var CurrentUser = await this.userManager.FindByIdAsync(User.Identity.GetUserId());
 
-                    var result = await this.userManager.UpdateAsync(this.CurrentUser);
-
-                    if (result.Succeeded)
+                if (CurrentUser.NFC != null)
+                    if (CurrentUser.NFC.Equals(model.NFC))
                     {
-                        var game = await this.db.Games.FindAsync(model.GameId);
+                        CurrentUser.Killed = true;
 
-                        int myTeam = 0;
+                        var result = await this.userManager.UpdateAsync(CurrentUser);
 
-                        int enemyTeam = 0;
-
-                        if (game.ChallengerOne.Users.Any(x => x.Id.Equals(this.CurrentUser.Id)))
+                        if (result.Succeeded)
                         {
-                            foreach (var user in game.ChallengerOne.Users.Where(x => !x.Killed && !x.Banned))
+                            var game = await this.db.Games.FindAsync(model.GameId);
+
+                            int myTeam = 0;
+
+                            int enemyTeam = 0;
+
+                            if (game.ChallengerOne.Users.Any(x => x.Id.Equals(CurrentUser.Id)))
                             {
-                                myTeam += 1;
+                                foreach (var user in game.ChallengerOne.Users.Where(x => !x.Killed && !x.Banned))
+                                {
+                                    myTeam += 1;
+                                }
+                                foreach (var user in game.ChallengerTwo.Users.Where(x => !x.Killed && !x.Banned))
+                                {
+                                    enemyTeam += 1;
+                                }
                             }
-                            foreach (var user in game.ChallengerTwo.Users.Where(x => !x.Killed && !x.Banned))
+                            else
                             {
-                                enemyTeam += 1;
+                                foreach (var user in game.ChallengerTwo.Users.Where(x => !x.Killed && !x.Banned))
+                                {
+                                    enemyTeam += 1;
+                                }
+                                foreach (var user in game.ChallengerOne.Users.Where(x => !x.Killed && !x.Banned))
+                                {
+                                    myTeam += 1;
+                                }
                             }
+
+                            new GcmProvider().CreateNotification(new PushNotificationData
+                            {
+                                Action = 3,
+                                Message = "Player killed!",
+                                Data = new
+                                {
+                                    MyTeam = myTeam,
+                                    EnemyTeam = enemyTeam
+                                }
+                            }, CurrentUser.RegistrationId).SendAsync().Wait();
+                            return this.Ok(new ApiResponse(200, Mapper.Map<UserApiModel>(CurrentUser)));
                         }
-                        else
-                        {
-                            foreach (var user in game.ChallengerTwo.Users.Where(x => !x.Killed && !x.Banned))
-                            {
-                                enemyTeam += 1;
-                            }
-                            foreach (var user in game.ChallengerOne.Users.Where(x => !x.Killed && !x.Banned))
-                            {
-                                myTeam += 1;
-                            }
-                        }
-
-                        new GcmProvider().CreateNotification(new PushNotificationData
-                        {
-                            Action = 3,
-                            Message = "Player killed!",
-                            Data = new
-                            {
-                                MyTeam = myTeam,
-                                EnemyTeam = enemyTeam
-                            }
-                        }, this.CurrentUser.RegistrationId).SendAsync().Wait();
-                        return this.Ok(new ApiResponse(200, Mapper.Map<UserApiModel>(this.CurrentUser)));
+                        return this.InternalServerError(new ApiResponse(500, model));
                     }
-                    return this.InternalServerError(new ApiResponse(500, model));
-                }
             }
             return this.BadRequest(new ApiResponse(400, model));
         }

@@ -51,10 +51,11 @@
                 <th>Killed</th>
             </tr>
         </thead>
-        @if (Model.ChallengerOne.Users.Count > 0)
-        {
-            <tbody>
-                @foreach (var member in Model.ChallengerOne.Users)
+        <tbody>
+
+            @if (Model.ChallengerOne.Users.Count > 0)
+            {
+                foreach (var member in Model.ChallengerOne.Users)
                 {
 
 
@@ -69,40 +70,42 @@
 
 
                 }
-            </tbody>
-        </table>
-        }
 
-        <h3>Team @Model.ChallengerTwo.Name:</h3>
-        @if (Model.ChallengerTwo.Users.Count > 0)
-        {
-            <table border="1" style="width: 100%; text-align:center;">
-                <thead>
+            }
+        </tbody>
+    </table>
+
+    <h3>Team @Model.ChallengerTwo.Name:</h3>
+    <table border="1" style="width: 100%; text-align:center;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Last name</th>
+                <th>Username</th>
+                <th>Killed</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ChallengerTwo.Users.Count > 0)
+            {
+
+                foreach (var member in Model.ChallengerTwo.Users)
+                {
+
+
+
+
                     <tr>
-                        <th>Name</th>
-                        <th>Last name</th>
-                        <th>Username</th>
-                        <th>Killed</th>
+                        <td>@member.FirstName</td>
+                        <td>@member.LastName</td>
+                        <td>@member.UserName</td>
+                        <td>@member.Killed</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var member in Model.ChallengerTwo.Users)
-                    {
+                }
 
+            }
+        </tbody>
+    </table>
 
-
-
-                        <tr>
-                            <td>@member.FirstName</td>
-                            <td>@member.LastName</td>
-                            <td>@member.UserName</td>
-                            <td>@member.Killed</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        }
-
-    </body>
+</body>
 </html>

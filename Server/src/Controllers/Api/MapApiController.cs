@@ -69,10 +69,10 @@ namespace src.Controllers.Api
             return this.Ok(coordinates);
         }*/
 
-        [HttpGet, Route("teammates/{id:long}/{gameId?}")]
-        public async Task<IHttpActionResult> GetTeamMatesCoords(long id, long? gameId)
+        [HttpGet, Route("teammates/{id:long}/{gameId:long}")]
+        public async Task<IHttpActionResult> GetTeamMatesCoords(long id, long gameId)
         {
-            if (gameId == null)
+            if (id != 0)
             {
                 var team = await this.db.Teams.Where(x => x.Id.Equals(id)).Include(x => x.Users).FirstAsync();
 
@@ -91,28 +91,30 @@ namespace src.Controllers.Api
             }
             else
             {
-                var game = await this.db.Games.FindAsync(gameId);
+                var game = await this.db.Games.Where(x => x.Id.Equals(gameId)).Include(x => x.ChallengerOne).Include(x => x.ChallengerTwo).FirstAsync();
 
                 List<object> coordinatesOne = new List<object>();
                 List<object> coordinatesTwo = new List<object>();
 
-                foreach (var user in game.ChallengerOne.Users)
-                {
-                    coordinatesOne.Add(new
+                if (game.ChallengerOne != null)
+                    foreach (var user in game.ChallengerOne.Users)
                     {
-                        lat = user.Latitude,
-                        lng = user.Longitude
-                    });
-                };
+                        coordinatesOne.Add(new
+                        {
+                            lat = user.Latitude,
+                            lng = user.Longitude
+                        });
+                    };
 
-                foreach (var user in game.ChallengerTwo.Users)
-                {
-                    coordinatesTwo.Add(new
+                if (game.ChallengerTwo != null)
+                    foreach (var user in game.ChallengerTwo.Users)
                     {
-                        lat = user.Latitude,
-                        lng = user.Longitude
-                    });
-                };
+                        coordinatesTwo.Add(new
+                        {
+                            lat = user.Latitude,
+                            lng = user.Longitude
+                        });
+                    };
                 return this.Ok(new
                 {
                     TeamOne = coordinatesOne.ToArray(),
