@@ -41,6 +41,7 @@ public class GcmMessageEvent {
         private long teamId;
         private long gameId;
 
+
         public int getMyTeam() {
             return myTeam;
         }

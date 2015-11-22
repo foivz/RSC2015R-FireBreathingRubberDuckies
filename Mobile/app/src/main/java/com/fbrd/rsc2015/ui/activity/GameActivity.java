@@ -105,7 +105,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setupChat() {
-        wvChat.load("http://corn-hub.blogspot.hr/");
+        wvChat.load("http://95.85.26.58:6767/");
     }
 
     public void startGame() {
@@ -159,6 +159,8 @@ public class GameActivity extends AppCompatActivity {
             case "2":
                 preferences.preferences().edit().putLong("GameId", event.getData().getGameId()).commit();
                 startGame();
+                break;
+            case "9":
                 break;
         }
     }

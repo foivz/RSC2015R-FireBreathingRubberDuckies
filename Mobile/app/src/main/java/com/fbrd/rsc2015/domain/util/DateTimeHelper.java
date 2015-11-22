@@ -14,15 +14,12 @@ public class DateTimeHelper {
 
     private DateTime startedAt;
 
-    private DateTime endedAt;
-
     private String finalTime = "";
 
     private int duration;
 
-    public DateTimeHelper(DateTime startedAt, DateTime endedAt, int duration) {
+    public DateTimeHelper(DateTime startedAt, int duration) {
         this.startedAt = startedAt;
-        this.endedAt = endedAt;
         this.duration = duration;
     }
 
