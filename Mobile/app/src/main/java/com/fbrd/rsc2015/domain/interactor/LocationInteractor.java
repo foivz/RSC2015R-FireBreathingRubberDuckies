@@ -1,12 +1,6 @@
 package com.fbrd.rsc2015.domain.interactor;
 
-import com.example.loginmodule.model.bus.ZET;
 import com.example.loginmodule.util.ServiceUtil;
-import com.fbrd.rsc2015.domain.model.event.FeedSuccessEvent;
-import com.fbrd.rsc2015.domain.model.event.LocationErrorPostEvent;
-import com.fbrd.rsc2015.domain.model.event.LocationPostEvent;
-import com.fbrd.rsc2015.domain.model.request.LocationModel;
-import com.fbrd.rsc2015.domain.model.response.LocationResponse;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.domain.repository.RSCRepository;
 

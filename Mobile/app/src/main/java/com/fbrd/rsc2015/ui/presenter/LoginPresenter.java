@@ -10,8 +10,6 @@ import com.fbrd.rsc2015.domain.gcm.RSCRegistar;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.ui.activity.LoginActivity;
 
-import javax.inject.Inject;
-
 import de.halfbit.tinybus.Subscribe;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

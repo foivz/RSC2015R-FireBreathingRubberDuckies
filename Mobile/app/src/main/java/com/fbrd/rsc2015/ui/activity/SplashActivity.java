@@ -1,15 +1,14 @@
 package com.fbrd.rsc2015.ui.activity;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.webkit.WebViewClient;
-
 import com.dmacan.lightandroid.ui.custom.view.SexyWebView;
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.app.di.component.DaggerSplashComponent;
 import com.fbrd.rsc2015.app.di.module.ApiModule;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.concurrent.TimeUnit;
 

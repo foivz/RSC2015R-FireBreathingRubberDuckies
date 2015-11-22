@@ -1,13 +1,13 @@
 package com.fbrd.rsc2015.ui.activity;
 
+import com.fbrd.rsc2015.R;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-
-import com.fbrd.rsc2015.R;
 
 public class TeamActivity extends AppCompatActivity {
 

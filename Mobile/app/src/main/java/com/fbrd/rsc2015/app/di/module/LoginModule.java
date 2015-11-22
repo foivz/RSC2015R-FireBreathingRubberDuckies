@@ -1,5 +1,9 @@
 package com.fbrd.rsc2015.app.di.module;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import com.example.loginmodule.interactor.LoginInteractor;
 import com.example.loginmodule.interactor.LoginInteractorFacebook;
 import com.example.loginmodule.interactor.LoginInteractorGoogle;
@@ -14,9 +18,6 @@ import com.fbrd.rsc2015.domain.gcm.RSCRegistar;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.ui.activity.LoginActivity;
 import com.fbrd.rsc2015.ui.presenter.LoginPresenter;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import javax.inject.Singleton;
 

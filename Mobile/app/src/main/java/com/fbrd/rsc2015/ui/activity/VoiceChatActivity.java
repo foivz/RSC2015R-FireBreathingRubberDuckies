@@ -3,8 +3,6 @@ package com.fbrd.rsc2015.ui.activity;
 import com.example.loginmodule.model.bus.ZET;
 import com.example.loginmodule.util.ServiceUtil;
 import com.fbrd.rsc2015.R;
-import com.fbrd.rsc2015.app.RSCApp;
-import com.fbrd.rsc2015.app.di.component.DaggerAppComponent;
 import com.fbrd.rsc2015.app.di.component.DaggerVoiceChatComponent;
 import com.fbrd.rsc2015.app.di.module.ApiModule;
 import com.fbrd.rsc2015.domain.model.event.CommunicationsFailureEvent;
