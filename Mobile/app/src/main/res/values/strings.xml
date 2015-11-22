@@ -20,4 +20,5 @@
     <string name="title_nfc_activity">NFCScanActivity</string>
     <string name="scan_nfc_text">Scan your nfc and register into the game</string>
     <string name="nfc_enabled_text">NFC is enabled</string>
+    <string name="google_sign_in_button_text">Sign In with Google</string>
 </resources>

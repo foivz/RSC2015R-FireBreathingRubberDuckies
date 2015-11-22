@@ -31,9 +31,10 @@
 
     <Button
         android:id="@+id/btnSignIn"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etPassword"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="@string/lbl_sign_in" />
 
@@ -71,30 +72,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layoutOr"
-        android:orientation="horizontal">
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnSignInGoogle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/lbl_google" />
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/btn_googleplus"
+            android:drawableLeft="@drawable/google"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="@string/google_sign_in_button_text"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnSignInFacebook"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/lbl_facebook" />
+            style="@style/FacebookLoginButton"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:text="Sign in with facebook"
+            android:textAllCaps="true"
+            android:textColor="#FFF" />
     </LinearLayout>
 
     <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/open_comms"
-            android:text="Start comms"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="100dp"
-            />
+        android:id="@+id/open_comms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:text="Start comms"
+        android:visibility="gone" />
 
 </RelativeLayout>
