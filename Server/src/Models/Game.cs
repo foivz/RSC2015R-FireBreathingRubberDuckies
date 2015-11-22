@@ -11,6 +11,8 @@ namespace src.Models
     {
         public int Length { get; set; }
         public bool Started { get; set; }
+        public DateTime? Start { get; set; }
+        public DateTime? End { get; set; }
         public bool Finished { get; set; }
         public long? ChallengerOneId { get; set; }
         [ForeignKey("ChallengerOneId")]

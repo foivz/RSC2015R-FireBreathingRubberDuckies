@@ -18,9 +18,18 @@ namespace src.Controllers.Api
     public class UsersApiController : AbstractApiController
     {
         [HttpGet, Route(""), Authorize(Roles = "admin,superadmin")]
-        public IHttpActionResult GetAll()
+        public async Task<IHttpActionResult> GetAll()
         {
-            return Ok(new ApiResponse(200, Mapper.Map<IEnumerable<UserApiModel>>(this.db.Users.AsEnumerable()).ToArray()));
+            var users = this.db.Users.AsEnumerable();
+            List<User> players = new List<User>();
+            foreach (var user in users)
+            {
+                if (await this.userManager.IsInRoleAsync(user.Id, "user"))
+                {
+                    players.Add(user);
+                }
+            }
+            return Ok(new ApiResponse(200, Mapper.Map<IEnumerable<UserApiModel>>(players).ToArray()));
         }
 
         [HttpGet, Route("{id}"), Authorize]

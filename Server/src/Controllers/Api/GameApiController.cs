@@ -40,10 +40,22 @@ namespace src.Controllers.Api
         {
             if (ModelState.IsValid && model != null)
             {
+                var teamOne = await this.db.Teams.FindAsync(model.ChallengerOne);
+                var teamtwo = await this.db.Teams.FindAsync(model.ChallengerTwo);
+
+                if (!model.Locations.Length.Equals(0))
+                {
+                    teamOne.Latitude = model.Locations[0].Lat;
+                    teamOne.Latitude = model.Locations[0].Lng;
+
+                    teamOne.Latitude = model.Locations[1].Lat;
+                    teamOne.Latitude = model.Locations[1].Lng;
+                }
+
                 var mapped = new Game()
                 {
-                    ChallengerOne = await this.db.Teams.FindAsync(model.ChallengerOne),
-                    ChallengerTwo = await this.db.Teams.FindAsync(model.ChallengerTwo),
+                    ChallengerOne = teamOne,
+                    ChallengerTwo = teamtwo,
                     Length = model.Length,
                     MapId = model.MapId,
                     Started = false,
@@ -66,6 +78,7 @@ namespace src.Controllers.Api
             if (wanted != null)
             {
                 wanted.Started = true;
+                wanted.Start = DateTime.Now;
                 await this.db.SaveChangesAsync();
 
                 List<User> contestants = wanted.ChallengerOne.Users.ToList();
@@ -125,6 +138,7 @@ namespace src.Controllers.Api
             if (wanted != null)
             {
                 wanted.Finished = true;
+                wanted.End = DateTime.Now;
                 await this.db.SaveChangesAsync();
 
                 List<User> contestants = wanted.ChallengerOne.Users.ToList();
@@ -211,13 +225,43 @@ namespace src.Controllers.Api
 
                     if (result.Succeeded)
                     {
+                        var game = await this.db.Games.FindAsync(model.GameId);
+
+                        int myTeam = 0;
+
+                        int enemyTeam = 0;
+
+                        if (game.ChallengerOne.Users.Any(x => x.Id.Equals(this.CurrentUser.Id)))
+                        {
+                            foreach (var user in game.ChallengerOne.Users.Where(x => !x.Killed && !x.Banned))
+                            {
+                                myTeam += 1;
+                            }
+                            foreach (var user in game.ChallengerTwo.Users.Where(x => !x.Killed && !x.Banned))
+                            {
+                                enemyTeam += 1;
+                            }
+                        }
+                        else
+                        {
+                            foreach (var user in game.ChallengerTwo.Users.Where(x => !x.Killed && !x.Banned))
+                            {
+                                enemyTeam += 1;
+                            }
+                            foreach (var user in game.ChallengerOne.Users.Where(x => !x.Killed && !x.Banned))
+                            {
+                                myTeam += 1;
+                            }
+                        }
+
                         new GcmProvider().CreateNotification(new PushNotificationData
                         {
                             Action = 3,
                             Message = "Player killed!",
                             Data = new
                             {
-                                UserId = this.CurrentUser.Id
+                                MyTeam = myTeam,
+                                EnemyTeam = enemyTeam
                             }
                         }, this.CurrentUser.RegistrationId).SendAsync().Wait();
                         return this.Ok(new ApiResponse(200, Mapper.Map<UserApiModel>(this.CurrentUser)));

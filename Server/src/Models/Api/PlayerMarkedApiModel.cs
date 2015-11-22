@@ -10,5 +10,7 @@ namespace src.Models.Api
     {
         [Required]
         public string NFC { get; set; }
+        [Required]
+        public long GameId { get; set; }
     }
 }

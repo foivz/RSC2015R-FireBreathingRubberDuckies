@@ -35,7 +35,7 @@ namespace src.Controllers.Api
         public async Task<IHttpActionResult> GetTeams(long id)
         {
             var wanted = await this.db.Teams.FindAsync(id);
-            if(wanted != null)
+            if (wanted != null)
                 return this.Ok(new ApiResponse(200, wanted));
             return this.NotFound(new ApiResponse(404, id));
         }
@@ -80,7 +80,7 @@ namespace src.Controllers.Api
                         Message = "Added to the team!",
                         Data = new
                         {
-                           TeamId = team.Id
+                            TeamId = team.Id
                         }
                     }, member.RegistrationId).SendAsync().Wait();
 
@@ -89,6 +89,43 @@ namespace src.Controllers.Api
                 return this.BadRequest(new ApiResponse(400, model));
             }
             return this.BadRequest(new ApiResponse(400, model));
+        }
+
+        [HttpPost, Route("addmultiple"), Authorize(Roles = "admin,superadmin")]
+        public async Task<IHttpActionResult> AddTeamMember(AddMemberApiModel[] array)
+        {
+            if (ModelState.IsValid && array != null)
+            {
+                foreach (var model in array)
+                {
+                    var team = await this.db.Teams.FindAsync(model.TeamId);
+
+                    var member = await this.userManager.FindByIdAsync(model.UserId);
+
+                    if (!team.Users.Contains(member) && await this.userManager.IsInRoleAsync(model.UserId, "user"))
+                    {
+                        member.Killed = false;
+
+                        team.Users.Add(member);
+
+                        await this.db.SaveChangesAsync();
+
+                        new GcmProvider().CreateNotification(new PushNotificationData
+                        {
+                            Action = 1,
+                            Message = "Added to the team!",
+                            Data = new
+                            {
+                                TeamId = team.Id
+                            }
+                        }, member.RegistrationId).SendAsync().Wait();
+
+                        
+                    }
+                }
+                return this.Ok(new ApiResponse(200));
+            }
+            return this.BadRequest(new ApiResponse(400));
         }
     }
 }

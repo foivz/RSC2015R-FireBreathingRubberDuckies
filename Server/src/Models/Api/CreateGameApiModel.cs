@@ -14,6 +14,7 @@ namespace src.Models.Api
         public long ChallengerOne { get; set; }
         [Required]
         public long ChallengerTwo { get; set; }
+        public Coords[] Locations { get; set; }
         [Required]
         public long MapId { get; set; }
     }

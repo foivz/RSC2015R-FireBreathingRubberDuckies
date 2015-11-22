@@ -301,6 +301,7 @@
     <Compile Include="Controllers\Api\RolesApiController.cs" />
     <Compile Include="Controllers\Api\TeamApiController.cs" />
     <Compile Include="Controllers\Api\UsersApiController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Helpers\Api\AmazonS3\Interfaces\IS3Provider.cs" />
     <Compile Include="Helpers\Api\AmazonS3\Models\S3ApiModel.cs" />
     <Compile Include="Helpers\Api\AmazonS3\S3Client.cs" />
@@ -363,7 +364,12 @@
     <Compile Include="Migrations\201511211932433_MapsAddedToTheGame.Designer.cs">
       <DependentUpon>201511211932433_MapsAddedToTheGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511212354311_NewFields.cs" />
+    <Compile Include="Migrations\201511212354311_NewFields.Designer.cs">
+      <DependentUpon>201511212354311_NewFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Api\AddMemberApiModel.cs" />
+    <Compile Include="Models\Api\AndroidGameApiModel.cs" />
     <Compile Include="Models\Api\CreateGameApiModel.cs" />
     <Compile Include="Models\Api\CreateUserApiModel.cs" />
     <Compile Include="Controllers\Api\NotificationApiController.cs" />
@@ -440,6 +446,8 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\FireBreathingRubberDuckies - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\FireBreathingRubberDuckies - Web Deploy.pubxml" />
+    <Content Include="Views\Shared\_pdfPartial.cshtml" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201511161936594_Initial.resx">
@@ -480,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511211932433_MapsAddedToTheGame.resx">
       <DependentUpon>201511211932433_MapsAddedToTheGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511212354311_NewFields.resx">
+      <DependentUpon>201511212354311_NewFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
