@@ -1,5 +1,7 @@
 package com.fbrd.rsc2015.ui.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -24,14 +26,18 @@ import com.fbrd.lightandroidgoodies.SpeechRecognizer;
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.app.di.component.DaggerGameComponent;
 import com.fbrd.rsc2015.app.di.module.GameModule;
+import com.fbrd.rsc2015.domain.interactor.DeathInteractor;
 import com.fbrd.rsc2015.domain.interactor.GameInteractor;
 import com.fbrd.rsc2015.domain.interactor.PairingErrorEvent;
 import com.fbrd.rsc2015.domain.interactor.PairingInteractor;
+import com.fbrd.rsc2015.domain.interactor.ReportInteractor;
 import com.fbrd.rsc2015.domain.manager.NFCManager;
+import com.fbrd.rsc2015.domain.model.event.DeathSuccessEvent;
 import com.fbrd.rsc2015.domain.model.event.GamesFailureEvent;
 import com.fbrd.rsc2015.domain.model.event.GamesSuccessEvent;
 import com.fbrd.rsc2015.domain.model.event.GcmMessageEvent;
 import com.fbrd.rsc2015.domain.model.event.PairingSuccessEvent;
+import com.fbrd.rsc2015.domain.model.response.SummaryResponse;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.domain.service.LocationUpdateService;
 import com.fbrd.rsc2015.domain.service.NFCScannedEvent;
@@ -43,7 +49,6 @@ import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.SimpleLineIconsIcons;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -81,7 +86,13 @@ public class GameActivity extends AppCompatActivity {
     SpeechRecognizer recognizer;
     @Bind(R.id.fab)
     FloatingActionButton fab;
-    private long teamId = 33;
+    @Inject
+    DeathInteractor deathInteractor;
+    @Inject
+    ReportInteractor reportInteractor;
+    private long teamId;
+    private long gameId;
+    private boolean paired;
 
     private String url;
 
@@ -159,21 +170,22 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "8":
                 this.teamId = event.getData().getTeamId();
+                this.gameId = event.getData().getGameId();
                 nfcFragment.askForPairing();
                 pairNfc();
                 break;
             case "2":
-                preferences.preferences().edit().putLong("GameId", event.getData().getGameId()).commit();
+                this.gameId = event.getData().getGameId();
 //                startGame();
                 break;
             case "9":
                 break;
             case "10":
                 startService(new Intent(this, LocationUpdateService.class));
-                gameInteractor.fetchGames(preferences.getToken(), preferences.preferences().getLong("GameId", 0));
+                gameInteractor.fetchGames(preferences.getToken(), gameId);
                 startGame();
                 openUrl("http://95.85.26.58:6767/" + event.getData().getUrl());
-                String url = "http://firebreathingrubberduckies.azurewebsites.net/#/mapmobile/" + teamId + "/0?token=" + preferences.getToken();
+                String url = "http://firebreathingrubberduckies.azurewebsites.net/#/mapmobile/0/" + gameId + "?token=" + preferences.getToken();
                 mapFragment.showMap(url);
                 Log.i("DAM_URL", url);
                 break;
@@ -210,8 +222,13 @@ public class GameActivity extends AppCompatActivity {
 
     @Subscribe
     public void onNFCMessage(NFCScannedEvent event) {
-        Toast.makeText(GameActivity.this, event.getResult(), Toast.LENGTH_SHORT).show();
-        pairingInteractor.pair(event.getResult(), 0);
+//        Toast.makeText(GameActivity.this, event.getResult(), Toast.LENGTH_SHORT).show();
+        if (!paired) {
+            paired = true;
+            pairingInteractor.pair(event.getResult(), 0);
+        } else {
+            deathInteractor.killYourself(preferences.getToken(), event.getResult(), gameId);
+        }
     }
 
     @Subscribe
@@ -234,6 +251,17 @@ public class GameActivity extends AppCompatActivity {
     @Subscribe
     public void onPairingError(PairingErrorEvent errorEvent) {
         Toast.makeText(GameActivity.this, "Pairing error", Toast.LENGTH_SHORT).show();
+    }
+
+    @Subscribe
+    public void onDeathSuccessEvent(DeathSuccessEvent event) {
+        reportInteractor.getSummary(gameId);
+    }
+
+    @Subscribe
+    public void onSummaryEvent(SummaryResponse response) {
+        AlertDialog dialog = new AlertDialog.Builder(this).setMessage(response.toString()).create();
+        dialog.show();
     }
 
     @Override

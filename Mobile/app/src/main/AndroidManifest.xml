@@ -95,25 +95,25 @@
             android:label="@string/title_activity_game"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.activity.NFCScanActivity"
-            android:label="@string/title_nfc_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED" />
-            </intent-filter>
-            <meta-data
-                android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/nfc_tech_filter" />
-
-            <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-        </activity>
+        <!--<activity-->
+            <!--android:name=".ui.activity.NFCScanActivity"-->
+            <!--android:label="@string/title_nfc_activity"-->
+            <!--android:screenOrientation="portrait">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.nfc.action.TECH_DISCOVERED" />-->
+            <!--</intent-filter>-->
+            <!--<meta-data-->
+                <!--android:name="android.nfc.action.TECH_DISCOVERED"-->
+                <!--android:resource="@xml/nfc_tech_filter" />-->
+<!---->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
+<!---->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+<!---->
+                <!--<data android:mimeType="text/plain" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
 
         <service android:name=".domain.service.LocationUpdateService" />
     </application>
