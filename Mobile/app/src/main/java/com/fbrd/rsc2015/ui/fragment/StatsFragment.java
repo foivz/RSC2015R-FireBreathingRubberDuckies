@@ -44,6 +44,6 @@ public class StatsFragment extends TabFragment {
 
 
     public void showOdds(int myTeam, int enemyTeam){
-        
+
     }
 }

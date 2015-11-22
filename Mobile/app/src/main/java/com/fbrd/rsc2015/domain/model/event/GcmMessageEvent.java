@@ -40,7 +40,7 @@ public class GcmMessageEvent {
         private int enemyTeam;
         private long teamId;
         private long gameId;
-
+        private String url;
 
         public int getMyTeam() {
             return myTeam;
@@ -72,6 +72,14 @@ public class GcmMessageEvent {
 
         public void setGameId(long gameId) {
             this.gameId = gameId;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
         }
     }
 }

@@ -59,20 +59,26 @@ public class RSCIntentService extends GcmIntentService {
         GcmMessageEvent event = new GcmMessageEvent(action, data, message);
         ZET.post(event);
         if (action.equals("8")) {
-            notification(event);
+            notification(event, "New team", 8);
+        } else if (action.equals("2")) {
+            notification(event, "Game started", 2);
         }
     }
 
-    private void notification(GcmMessageEvent event) {
+    private void notification(GcmMessageEvent event, String title, int action) {
         // Here you can add your own notification handling. Example below:
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(android.R.drawable.ic_menu_add) // notification icon
-                .setContentTitle("New team") // title for notification
+                .setContentTitle(title) // title for notification
                 .setContentText(event.getMessage()) // message for notification
                 .setAutoCancel(true); // clear notification after click
 
         Intent intent = new Intent(getBaseContext(), GameActivity.class);
-        intent.putExtra("teamId", event.getData().getTeamId());
+        intent.putExtra("action", String.valueOf(action));
+        if (action == 8)
+            intent.putExtra("teamId", event.getData().getTeamId());
+        if (action == 2)
+            intent.putExtra("gameId", event.getData().getGameId());
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         mBuilder.setContentIntent(pi);
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

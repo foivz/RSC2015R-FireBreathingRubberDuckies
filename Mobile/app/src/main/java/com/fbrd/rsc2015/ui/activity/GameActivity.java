@@ -1,15 +1,21 @@
 package com.fbrd.rsc2015.ui.activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -75,7 +81,6 @@ public class GameActivity extends AppCompatActivity {
     SpeechRecognizer recognizer;
     @Bind(R.id.fab)
     FloatingActionButton fab;
-    private long gameId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +91,11 @@ public class GameActivity extends AppCompatActivity {
         DaggerGameComponent.builder().gameModule(new GameModule(this)).build().inject(this);
         setupTabs();
         startService(new Intent(this, LocationUpdateService.class));
-        setupChat();
         gameInteractor.fetchGames(preferences.getToken(), 1);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
     @OnClick(R.id.fab)
@@ -104,12 +112,8 @@ public class GameActivity extends AppCompatActivity {
         tabs.setupWithViewPager(pager);
     }
 
-    public void setupChat() {
-        wvChat.load("http://95.85.26.58:6767/");
-    }
-
     public void startGame() {
-        wvChat.setVisibility(View.VISIBLE);
+//        wvChat.setVisibility(View.VISIBLE);
         tabs.setVisibility(View.VISIBLE);
         fab.setVisibility(View.VISIBLE);
         adapter.clearTabs();
@@ -150,17 +154,21 @@ public class GameActivity extends AppCompatActivity {
             case "5":
                 Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 v.vibrate(3000);
+                Toast.makeText(GameActivity.this, "You are going out of bounds", Toast.LENGTH_LONG).show();
                 break;
             case "8":
                 nfcFragment.askForPairing();
                 pairNfc();
-                this.gameId = event.getData().getTeamId();
                 break;
             case "2":
                 preferences.preferences().edit().putLong("GameId", event.getData().getGameId()).commit();
                 startGame();
                 break;
             case "9":
+                break;
+            case "10":
+                openUrl("http://95.85.26.58:6767/");
+//                wvChat.load("http://95.85.26.58:6767/");
                 break;
         }
     }
@@ -204,7 +212,7 @@ public class GameActivity extends AppCompatActivity {
 
     @Subscribe
     public void onGameStatsError(GamesFailureEvent event) {
-        Toast.makeText(GameActivity.this, "An error has occured", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(GameActivity.this, "An error has occured", Toast.LENGTH_SHORT).show();
     }
 
     @Subscribe
@@ -222,5 +230,36 @@ public class GameActivity extends AppCompatActivity {
     protected void onDestroy() {
         stopService(new Intent(this, LocationUpdateService.class));
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+            onVoiceCommand();
+            return true;
+        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void openUrl(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setPackage("com.android.chrome");
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            // Chrome browser presumably not installed so allow user to choose instead
+            intent.setPackage(null);
+            startActivity(intent);
+        }
     }
 }
