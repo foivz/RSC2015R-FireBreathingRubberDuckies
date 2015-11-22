@@ -6,12 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.dmacan.lightandroid.ui.custom.tabs.Tab;
+import com.example.loginmodule.model.bus.ZET;
 import com.fbrd.rsc2015.R;
+import com.fbrd.rsc2015.domain.service.NFCScannedEvent;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.halfbit.tinybus.Subscribe;
 
 /**
  * Created by david on 21.11.2015..
@@ -32,7 +35,7 @@ public class NfcFragment extends TabFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
+
 
 }
