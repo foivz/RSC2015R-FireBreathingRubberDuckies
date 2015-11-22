@@ -41,4 +41,9 @@ public class StatsFragment extends TabFragment {
     public void startTimer(long duration, DateTime startTime) {
 
     }
+
+
+    public void showOdds(int myTeam, int enemyTeam){
+        
+    }
 }
