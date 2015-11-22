@@ -58,9 +58,9 @@ public class RSCIntentService extends GcmIntentService {
         GcmMessageEvent event = new GcmMessageEvent(action, data, message);
         ZET.post(event);
         if (action.equals("8")) {
-            notification(event, "New team", 8);
+//            notification(event, "New team", 8);
         } else if (action.equals("2")) {
-            notification(event, "Game started", 2);
+//            notification(event, "Game started", 2);
         }
     }
 

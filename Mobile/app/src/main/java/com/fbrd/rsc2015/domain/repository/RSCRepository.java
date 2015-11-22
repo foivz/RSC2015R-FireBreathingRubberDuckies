@@ -79,7 +79,7 @@ public class RSCRepository {
         @PUT("/api/1/games")
         Observable<LocationResponse> pushLocation(@Header("Authorization") String token, @Field("lat") double lat, @Field("long") double lon, @Field("mapId") long mapId);
 
-        @GET("/api/1/games/{id}")
+        @GET("/api/1/games/byid/{id}")
         Observable<GamesResponse> getGame(@Header("Authorization") String token, @Path("id") long gameId);
 
         @FormUrlEncoded
