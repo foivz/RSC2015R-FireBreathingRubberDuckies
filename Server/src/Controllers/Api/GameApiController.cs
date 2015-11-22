@@ -249,39 +249,54 @@ namespace src.Controllers.Api
 
                             int enemyTeam = 0;
 
-                            if (game.ChallengerOne.Users.Any(x => x.Id.Equals(CurrentUser.Id)))
-                            {
-                                foreach (var user in game.ChallengerOne.Users.Where(x => !x.Killed && !x.Banned))
+                            if (game.ChallengerOne != null)
+                                if (game.ChallengerOne.Users.Any(x => x.Id.Equals(CurrentUser.Id)))
                                 {
-                                    myTeam += 1;
+                                    foreach (var user in game.ChallengerOne.Users.Where(x => !x.Killed && !x.Banned))
+                                    {
+                                        myTeam += 1;
+                                    }
+                                    foreach (var user in game.ChallengerTwo.Users.Where(x => !x.Killed && !x.Banned))
+                                    {
+                                        enemyTeam += 1;
+                                    }
                                 }
-                                foreach (var user in game.ChallengerTwo.Users.Where(x => !x.Killed && !x.Banned))
+                                else
                                 {
-                                    enemyTeam += 1;
-                                }
-                            }
-                            else
-                            {
-                                foreach (var user in game.ChallengerTwo.Users.Where(x => !x.Killed && !x.Banned))
-                                {
-                                    enemyTeam += 1;
-                                }
-                                foreach (var user in game.ChallengerOne.Users.Where(x => !x.Killed && !x.Banned))
-                                {
-                                    myTeam += 1;
-                                }
-                            }
+                                    if (game.ChallengerTwo != null)
+                                    {
+                                        foreach (var user in game.ChallengerTwo.Users.Where(x => !x.Killed && !x.Banned))
+                                        {
+                                            enemyTeam += 1;
+                                        }
+                                        foreach (var user in game.ChallengerOne.Users.Where(x => !x.Killed && !x.Banned))
+                                        {
+                                            myTeam += 1;
+                                        }
+                                    }
 
-                            new GcmProvider().CreateNotification(new PushNotificationData
-                            {
-                                Action = 3,
-                                Message = "Player killed!",
-                                Data = new
-                                {
-                                    MyTeam = myTeam,
-                                    EnemyTeam = enemyTeam
                                 }
-                            }, CurrentUser.RegistrationId).SendAsync().Wait();
+
+                            var list = new List<User>();
+
+                            if (game.ChallengerOne != null)
+                                list.AddRange(game.ChallengerOne.Users.ToList());
+                            if (game.ChallengerTwo != null)
+                                list.AddRange(game.ChallengerTwo.Users.ToList());
+
+                            foreach (var user in list)
+                            {
+                                new GcmProvider().CreateNotification(new PushNotificationData
+                                {
+                                    Action = 3,
+                                    Message = "Player killed!",
+                                    Data = new
+                                    {
+                                        MyTeam = myTeam,
+                                        EnemyTeam = enemyTeam
+                                    }
+                                }, user.RegistrationId).SendAsync().Wait();   
+                            }
                             return this.Ok(new ApiResponse(200, Mapper.Map<UserApiModel>(CurrentUser)));
                         }
                         return this.InternalServerError(new ApiResponse(500, model));

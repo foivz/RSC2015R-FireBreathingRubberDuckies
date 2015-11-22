@@ -13,6 +13,7 @@ using AutoMapper;
 using src.Models;
 using System.Data.Entity;
 using src.Helpers.PushNotifications;
+using System.Linq.Expressions;
 
 namespace src.Controllers.Api
 {
@@ -82,7 +83,8 @@ namespace src.Controllers.Api
                         Message = "Added to the team!",
                         Data = new
                         {
-                            TeamId = team.Id
+                            TeamId = team.Id,
+                            GameId = team.Games.Last().Id
                         }
                     }, member.RegistrationId).SendAsync().Wait();
 
@@ -114,13 +116,16 @@ namespace src.Controllers.Api
 
                         await this.db.SaveChangesAsync();
 
+                        var gameId = (await this.db.Games.ToListAsync())[this.db.Games.Count()-1].Id;
+
                         new GcmProvider().CreateNotification(new PushNotificationData
                         {
                             Action = 8,
                             Message = "Added to the team!",
                             Data = new
                             {
-                                TeamId = team.Id
+                                TeamId = team.Id,
+                                GameId = gameId
                             }
                         }, member.RegistrationId).SendAsync().Wait();  
                     }
