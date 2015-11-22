@@ -2,5 +2,5 @@
 <resources>
     <string name="facebook_app_id">916889011691947</string>
     <integer name="splash_time">2000</integer>
-    <integer name="location_refresh">5000</integer>
+    <integer name="location_refresh">60000</integer>
 </resources>

@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.loginmodule.model.bus.ZET;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
@@ -76,9 +78,11 @@ public class NdefReaderTask extends AsyncTask<Tag, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        if (result != null) {
-            Toast.makeText(context, "Result: " + result, Toast.LENGTH_SHORT).show();
-        }
+        Log.i("DAM", "NFC SCANNED");
+        ZET.post(new NFCScannedEvent(result));
+//        if (result != null) {
+//            Toast.makeText(context, "Result: " + result, Toast.LENGTH_SHORT).show();
+//        }
     }
 
 }
