@@ -38,6 +38,8 @@ public class GcmMessageEvent {
 
         private int myTeam;
         private int enemyTeam;
+        private long teamId;
+        private long gameId;
 
         public int getMyTeam() {
             return myTeam;
@@ -53,6 +55,22 @@ public class GcmMessageEvent {
 
         public void setEnemyTeam(int enemyTeam) {
             this.enemyTeam = enemyTeam;
+        }
+
+        public long getTeamId() {
+            return teamId;
+        }
+
+        public void setTeamId(long teamId) {
+            this.teamId = teamId;
+        }
+
+        public long getGameId() {
+            return gameId;
+        }
+
+        public void setGameId(long gameId) {
+            this.gameId = gameId;
         }
     }
 }

@@ -24,10 +24,10 @@ public class NFCManager {
 
     public NFCManager(Activity activity) {
         this.activity = activity;
+        adapter = NfcAdapter.getDefaultAdapter(activity);
     }
 
     public void connect(OnConnectListener onConnectListener) {
-        adapter = NfcAdapter.getDefaultAdapter(activity);
         onConnectListener.onConnectResult(adapter != null && adapter.isEnabled());
     }
 
@@ -84,7 +84,7 @@ public class NFCManager {
         adapter.enableForegroundDispatch(activity, pendingIntent, filters, techList);
     }
 
-    public void stopForegroundDispatch(){
+    public void stopForegroundDispatch() {
 
     }
 
