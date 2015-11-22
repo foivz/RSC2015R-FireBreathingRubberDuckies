@@ -3,6 +3,7 @@ package com.fbrd.rsc2015.ui.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,6 +17,8 @@ import com.fbrd.rsc2015.app.di.module.LoginModule;
 import com.fbrd.rsc2015.ui.presenter.LoginPresenter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.fonts.SimpleLineIconsIcons;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import javax.inject.Inject;
@@ -34,6 +37,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     @Bind(R.id.etPassword)
     MaterialEditText etPassword;
+    @Bind(R.id.fab)
+    FloatingActionButton fab;
 
     ProgressDialog progressDialog;
 
@@ -52,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         DaggerLoginComponent.builder().loginModule(new LoginModule(this, this)).build().inject(this);
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-
+        fab.setImageDrawable(new IconDrawable(this, SimpleLineIconsIcons.icon_user_follow).colorRes(android.R.color.white).actionBarSize());
         /*
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd.MM.yyyy HH:mm:ss");
         DateTime dt = formatter.parseDateTime("22.11.2015 4:00:00");
