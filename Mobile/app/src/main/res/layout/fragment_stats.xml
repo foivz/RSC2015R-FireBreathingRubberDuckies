@@ -77,12 +77,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="My team" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:id="@+id/myTeamAlive"
                 tools:text="Alive players : 3" />
 
@@ -104,6 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="Enemy team" />
 

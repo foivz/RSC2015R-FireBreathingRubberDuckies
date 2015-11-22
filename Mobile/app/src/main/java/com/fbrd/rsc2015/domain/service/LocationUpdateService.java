@@ -1,16 +1,16 @@
 package com.fbrd.rsc2015.domain.service;
 
-import com.fbrd.rsc2015.app.di.component.DaggerServiceComponent;
-import com.fbrd.rsc2015.app.di.module.ServiceModule;
-import com.fbrd.rsc2015.domain.interactor.LocationInteractor;
-import com.fbrd.rsc2015.domain.manager.LocationManager;
-
 import android.app.Service;
 import android.content.Intent;
 import android.location.Location;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+
+import com.fbrd.rsc2015.app.di.component.DaggerServiceComponent;
+import com.fbrd.rsc2015.app.di.module.ServiceModule;
+import com.fbrd.rsc2015.domain.interactor.LocationInteractor;
+import com.fbrd.rsc2015.domain.manager.LocationManager;
 
 import javax.inject.Inject;
 

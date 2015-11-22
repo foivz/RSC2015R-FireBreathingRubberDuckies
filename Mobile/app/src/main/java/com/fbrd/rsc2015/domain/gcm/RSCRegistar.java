@@ -1,10 +1,10 @@
 package com.fbrd.rsc2015.domain.gcm;
 
+import android.content.Context;
+
 import com.dmacan.lightandroidgcm.GcmRegistar;
 import com.dmacan.lightandroidgcm.listener.OnErrorListener;
 import com.dmacan.lightandroidgcm.listener.OnGcmRegisteredListener;
-
-import android.content.Context;
 
 /**
  * Created by david on 21.11.2015..

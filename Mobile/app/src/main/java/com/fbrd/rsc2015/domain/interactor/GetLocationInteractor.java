@@ -1,9 +1,9 @@
 package com.fbrd.rsc2015.domain.interactor;
 
+import android.location.Location;
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-
-import android.location.Location;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

@@ -1,5 +1,11 @@
 package com.fbrd.rsc2015.ui.activity;
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+
 import com.example.loginmodule.model.bus.ZET;
 import com.example.loginmodule.util.ServiceUtil;
 import com.fbrd.rsc2015.R;
@@ -8,12 +14,6 @@ import com.fbrd.rsc2015.app.di.module.ApiModule;
 import com.fbrd.rsc2015.domain.model.event.CommunicationsFailureEvent;
 import com.fbrd.rsc2015.domain.model.event.CommunicationsSuccessEvent;
 import com.fbrd.rsc2015.domain.repository.RSCRepository;
-
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 
 import javax.inject.Inject;
 

@@ -1,13 +1,13 @@
 package com.fbrd.rsc2015.ui.activity;
 
-import com.fbrd.rsc2015.R;
-import com.rengwuxian.materialedittext.MaterialEditText;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
+
+import com.fbrd.rsc2015.R;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

@@ -1,7 +1,6 @@
 package com.fbrd.rsc2015.domain.model.event;
 
 import com.dmacan.lightandroid.domain.util.Serializator;
-import com.example.loginmodule.model.response.GetUserResponse;
 
 /**
  * Created by david on 21.11.2015..

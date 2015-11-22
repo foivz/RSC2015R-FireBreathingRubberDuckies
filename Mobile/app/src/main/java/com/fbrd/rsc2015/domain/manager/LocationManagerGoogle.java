@@ -1,19 +1,18 @@
 package com.fbrd.rsc2015.domain.manager;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-
-import com.fbrd.rsc2015.R;
-import com.fbrd.rsc2015.domain.interactor.GetLocationInteractor;
-
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+
+import com.fbrd.rsc2015.R;
+import com.fbrd.rsc2015.domain.interactor.GetLocationInteractor;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 
 /**
  * Created by noxqs on 21.11.15..

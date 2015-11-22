@@ -1,7 +1,5 @@
 package com.fbrd.rsc2015.domain.interactor;
 
-import android.util.Log;
-
 import com.example.loginmodule.model.bus.ZET;
 import com.example.loginmodule.util.ServiceUtil;
 import com.fbrd.rsc2015.domain.model.event.PairingSuccessEvent;

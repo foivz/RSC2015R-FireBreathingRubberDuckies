@@ -1,5 +1,7 @@
 package com.fbrd.rsc2015.app.di.module;
 
+import android.support.v7.widget.Toolbar;
+
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.domain.interactor.NotificationInteractor;
 import com.fbrd.rsc2015.domain.model.response.FeedItem;
@@ -12,8 +14,6 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-
-import android.support.v7.widget.Toolbar;
 
 import javax.inject.Named;
 

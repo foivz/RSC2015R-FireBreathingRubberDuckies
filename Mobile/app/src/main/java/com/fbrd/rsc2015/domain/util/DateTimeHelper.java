@@ -1,11 +1,8 @@
 package com.fbrd.rsc2015.domain.util;
 
-import org.joda.time.DateTime;
-import org.joda.time.Hours;
-import org.joda.time.Minutes;
-import org.joda.time.Seconds;
-
 import android.util.Log;
+
+import org.joda.time.DateTime;
 
 /**
  * Created by noxqs on 22.11.15..
@@ -13,8 +10,6 @@ import android.util.Log;
 public class DateTimeHelper {
 
     private DateTime startedAt;
-
-    private String finalTime = "";
 
     private int duration;
 
@@ -24,7 +19,6 @@ public class DateTimeHelper {
     }
 
     public String calculateElapsedTime() {
-        int hours, minutes, seconds;
         DateTime currDate = new DateTime();
         String time;
 
