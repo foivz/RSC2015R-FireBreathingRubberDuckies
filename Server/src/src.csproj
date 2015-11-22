@@ -390,6 +390,10 @@
     <Compile Include="Migrations\201511220353296_NewFields1.Designer.cs">
       <DependentUpon>201511220353296_NewFields1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511220455161_Add.cs" />
+    <Compile Include="Migrations\201511220455161_Add.Designer.cs">
+      <DependentUpon>201511220455161_Add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Api\AddMemberApiModel.cs" />
     <Compile Include="Models\Api\AndroidGameApiModel.cs" />
     <Compile Include="Models\Api\CreateGameApiModel.cs" />
@@ -443,11 +447,20 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bundle.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\spritesheet-2x.png" />
+    <Content Include="Images\spritesheet.png" />
     <Content Include="index.html" />
+    <Content Include="jquery.min.js" />
+    <Content Include="leaflet-providers.js" />
+    <Content Include="leaflet.css" />
+    <Content Include="leaflet.draw.css" />
+    <Content Include="leaflet.draw.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -515,6 +528,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511220353296_NewFields1.resx">
       <DependentUpon>201511220353296_NewFields1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511220455161_Add.resx">
+      <DependentUpon>201511220455161_Add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

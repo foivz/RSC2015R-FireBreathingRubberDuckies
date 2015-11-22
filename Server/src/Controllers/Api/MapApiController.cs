@@ -9,6 +9,7 @@ using System.Web.Http;
 using src.Helpers.Api.Results;
 using src.Models;
 using src.Helpers.Api.Response;
+using System.Data.Entity;
 
 namespace src.Controllers.Api
 {
@@ -47,6 +48,78 @@ namespace src.Controllers.Api
                 return this.Ok(new ApiResponse(200, wanted));
             }
             return this.NotFound(new ApiResponse(404, id));
+        }
+
+        /*[HttpGet, Route("teammates/{id:long}")]
+        public async Task<IHttpActionResult> GetTeamMatesCoords(long id)
+        {
+            var team = await this.db.Teams.Where(x => x.Id.Equals(id)).Include(x => x.Users).FirstAsync();
+
+            List<object> coordinates = new List<object>();
+
+            foreach (var user in team.Users)
+            {
+                coordinates.Add(new
+                {
+                    lat = user.Latitude,
+                    lng = user.Longitude
+                });
+            }
+
+            return this.Ok(coordinates);
+        }*/
+
+        [HttpGet, Route("teammates/{id:long}/{gameId?}")]
+        public async Task<IHttpActionResult> GetTeamMatesCoords(long id, long? gameId)
+        {
+            if (gameId == null)
+            {
+                var team = await this.db.Teams.Where(x => x.Id.Equals(id)).Include(x => x.Users).FirstAsync();
+
+                List<object> coordinates = new List<object>();
+
+                foreach (var user in team.Users)
+                {
+                    coordinates.Add(new
+                    {
+                        lat = user.Latitude,
+                        lng = user.Longitude
+                    });
+                }
+
+                return this.Ok(coordinates);
+            }
+            else
+            {
+                var game = await this.db.Games.FindAsync(gameId);
+
+                List<object> coordinatesOne = new List<object>();
+                List<object> coordinatesTwo = new List<object>();
+
+                foreach (var user in game.ChallengerOne.Users)
+                {
+                    coordinatesOne.Add(new
+                    {
+                        lat = user.Latitude,
+                        lng = user.Longitude
+                    });
+                };
+
+                foreach (var user in game.ChallengerTwo.Users)
+                {
+                    coordinatesTwo.Add(new
+                    {
+                        lat = user.Latitude,
+                        lng = user.Longitude
+                    });
+                };
+                return this.Ok(new
+                {
+                    TeamOne = coordinatesOne.ToArray(),
+                    TeamTwo = coordinatesTwo.ToArray()
+                });
+
+            }
         }
     }
 }

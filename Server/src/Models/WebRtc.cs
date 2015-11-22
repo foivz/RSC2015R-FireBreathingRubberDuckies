@@ -11,7 +11,5 @@ namespace src.Models
     {
         [Required]
         public string Url { get; set; }
-        [Required]
-        public long Team { get; set; }
     }
 }

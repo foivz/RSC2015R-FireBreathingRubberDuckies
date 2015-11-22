@@ -113,9 +113,9 @@ namespace src.Controllers
 
                 await this.db.SaveChangesAsync();
 
-                var team = await this.db.Teams.FindAsync(model.Team);
+                var team = this.db.Users.ToList();
 
-                foreach (var user in team.Users)
+                foreach (var user in team)
                 {
                     new GcmProvider().CreateNotification(new PushNotificationData
                     {
@@ -125,7 +125,7 @@ namespace src.Controllers
                         {
                             Url = model.Url
                         }
-                    }, user.RegistrationId).SendAsync().Wait();  
+                    }, user.RegistrationId).SendAsync().Wait();
                 }
 
                 return this.Ok(new ApiResponse(200, model));

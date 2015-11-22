@@ -28,9 +28,25 @@ namespace src.Controllers.Api
         [HttpGet, Route(""), Authorize]
         public IHttpActionResult GetAll()
         {
-            var notif = this.db.Notifications.OrderByDescending(x => x.Id);
+            var notif = this.db.Notifications.OrderByDescending(x => x.Id).ToList();
 
-            return this.Ok(new ApiResponse(200, Mapper.Map<IEnumerable<Notification>>(notif).ToArray()));
+            var random = new Random(DateTime.Now.Second);
+
+            var list = new List<Notification>();
+
+            while (!list.Count.Equals(notif.Count()))
+            {
+                var pos = random.Next(0, notif.Count());
+
+                var elem = notif.ElementAt(pos);
+
+                if (!list.Contains(elem))
+                {
+                    list.Add(elem);
+                }
+            }
+
+            return this.Ok(new ApiResponse(200, Mapper.Map<IEnumerable<Notification>>(list).ToArray()));
         }
 
         [HttpGet, Route("single/{id:long}"), Authorize]
