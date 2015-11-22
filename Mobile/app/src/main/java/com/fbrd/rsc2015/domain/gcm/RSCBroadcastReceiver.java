@@ -1,8 +1,8 @@
 package com.fbrd.rsc2015.domain.gcm;
 
-import com.dmacan.lightandroidgcm.GcmBroadcastReceiver;
-
 import android.content.Intent;
+
+import com.dmacan.lightandroidgcm.GcmBroadcastReceiver;
 
 /**
  * Created by david on 21.11.2015..

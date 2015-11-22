@@ -1,19 +1,18 @@
 package com.fbrd.rsc2015.domain.gcm;
 
-import com.dmacan.lightandroidgcm.GcmIntentService;
-import com.dmacan.lightandroidgcm.GcmObserver;
-import com.dmacan.lightandroidgcm.listener.OnGcmMessageReceivedListener;
-import com.example.loginmodule.model.bus.ZET;
-import com.fbrd.rsc2015.R;
-import com.fbrd.rsc2015.domain.model.event.GcmMessageEvent;
-import com.fbrd.rsc2015.ui.activity.GameActivity;
-
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import com.dmacan.lightandroidgcm.GcmIntentService;
+import com.dmacan.lightandroidgcm.GcmObserver;
+import com.dmacan.lightandroidgcm.listener.OnGcmMessageReceivedListener;
+import com.example.loginmodule.model.bus.ZET;
+import com.fbrd.rsc2015.domain.model.event.GcmMessageEvent;
+import com.fbrd.rsc2015.ui.activity.GameActivity;
 
 /**
  * Created by david on 21.11.2015..

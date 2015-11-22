@@ -1,14 +1,13 @@
 package com.fbrd.rsc2015.domain.repository;
 
-import com.fbrd.rsc2015.domain.model.response.PairingResponse;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import com.example.loginmodule.model.response.RegistrationResponse;
 import com.fbrd.rsc2015.domain.model.response.CommunicationsResponse;
 import com.fbrd.rsc2015.domain.model.response.FeedResponse;
 import com.fbrd.rsc2015.domain.model.response.GamesResponse;
 import com.fbrd.rsc2015.domain.model.response.LocationResponse;
+import com.fbrd.rsc2015.domain.model.response.PairingResponse;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 

@@ -8,11 +8,11 @@ import org.joda.time.DateTime;
 public class GamesSuccessEvent {
 
     private String name;
-    private long duration;
+    private int duration;
     private DateTime startedAt;
     private DateTime endedAt;
 
-    public GamesSuccessEvent(String name, long duration, DateTime startedAt, DateTime endedAt) {
+    public GamesSuccessEvent(String name, int duration, DateTime startedAt, DateTime endedAt) {
         this.name = name;
         this.duration = duration;
         this.startedAt = startedAt;
@@ -23,7 +23,7 @@ public class GamesSuccessEvent {
         return name;
     }
 
-    public long getDuration() {
+    public int getDuration() {
         return duration;
     }
 

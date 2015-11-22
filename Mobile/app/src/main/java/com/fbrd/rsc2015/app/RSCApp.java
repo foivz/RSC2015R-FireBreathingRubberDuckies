@@ -1,11 +1,11 @@
 package com.fbrd.rsc2015.app;
 
-import com.facebook.FacebookSdk;
-import com.fbrd.rsc2015.app.di.component.DaggerAppComponent;
-
 import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
+
+import com.facebook.FacebookSdk;
+import com.fbrd.rsc2015.app.di.component.DaggerAppComponent;
 
 /**
  * Created by david on 21.11.2015..

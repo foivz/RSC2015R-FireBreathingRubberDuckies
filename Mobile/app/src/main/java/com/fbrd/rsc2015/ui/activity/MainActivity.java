@@ -1,16 +1,5 @@
 package com.fbrd.rsc2015.ui.activity;
 
-import com.fbrd.rsc2015.R;
-import com.fbrd.rsc2015.app.di.component.DaggerMainComponent;
-import com.fbrd.rsc2015.app.di.module.MainModule;
-import com.fbrd.rsc2015.domain.model.response.FeedItem;
-import com.fbrd.rsc2015.ui.presenter.MainPresenter;
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.squareup.picasso.Picasso;
-
-import org.buraktamturk.loadingview.LoadingView;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +12,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.fbrd.rsc2015.R;
+import com.fbrd.rsc2015.app.di.component.DaggerMainComponent;
+import com.fbrd.rsc2015.app.di.module.MainModule;
+import com.fbrd.rsc2015.domain.model.response.FeedItem;
+import com.fbrd.rsc2015.ui.presenter.MainPresenter;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.squareup.picasso.Picasso;
+
+import org.buraktamturk.loadingview.LoadingView;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
 package com.fbrd.rsc2015.domain.interactor;
 
+import android.location.Location;
+import android.util.Log;
+
 import com.example.loginmodule.util.ServiceUtil;
 import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.domain.repository.RSCRepository;
-
-import android.location.Location;
-import android.util.Log;
 
 import javax.inject.Inject;
 

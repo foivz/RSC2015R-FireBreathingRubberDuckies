@@ -9,15 +9,15 @@ public class Team {
 
     private int id;
     private String name;
-    private long duration;
+    private int duration;
     private DateTime startedAt;
     private DateTime endedAt;
 
-    public long getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(long duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
