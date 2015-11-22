@@ -18,8 +18,12 @@ import com.example.loginmodule.model.bus.ZET;
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.app.di.component.DaggerGameComponent;
 import com.fbrd.rsc2015.app.di.module.GameModule;
+import com.fbrd.rsc2015.domain.interactor.GameInteractor;
 import com.fbrd.rsc2015.domain.manager.NFCManager;
+import com.fbrd.rsc2015.domain.model.event.GamesFailureEvent;
+import com.fbrd.rsc2015.domain.model.event.GamesSuccessEvent;
 import com.fbrd.rsc2015.domain.model.event.GcmMessageEvent;
+import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.domain.service.LocationUpdateService;
 import com.fbrd.rsc2015.domain.service.NFCScannedEvent;
 import com.fbrd.rsc2015.ui.fragment.MapFragment;
@@ -54,6 +58,10 @@ public class GameActivity extends AppCompatActivity {
     TabAdapter adapter;
     @Inject
     NFCManager nfcManager;
+    @Inject
+    GameInteractor gameInteractor;
+    @Inject
+    RSCPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +78,7 @@ public class GameActivity extends AppCompatActivity {
                 nfcManager.handleIntent(getIntent());
             }
         });
+        gameInteractor.fetchGames(preferences.getToken(), 1);
     }
 
     private void setupTabs() {
@@ -115,8 +124,6 @@ public class GameActivity extends AppCompatActivity {
 
     @Subscribe
     public void onGCMMessage(GcmMessageEvent event) {
-        Log.i("DAM", "GCM Action: " + event.getAction());
-        Log.i("DAM", "GCM Data: " + event.getDataJSON());
         switch (event.getAction()) {
             case "3":
                 Log.i("DAM", "My team: " + event.getData().getMyTeam());
@@ -132,6 +139,17 @@ public class GameActivity extends AppCompatActivity {
     @Subscribe
     public void onNFCMessage(NFCScannedEvent event) {
         Toast.makeText(GameActivity.this, event.getResult(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Subscribe
+    public void onGameStatsLoaded(GamesSuccessEvent event) {
+        statsFragment.setGameName(event.getName());
+        statsFragment.startTimer(event.getDuration(), event.getStartedAt());
+    }
+
+    @Subscribe
+    public void onGameStatsError(GamesFailureEvent event) {
+        Toast.makeText(GameActivity.this, "An error has occured", Toast.LENGTH_SHORT).show();
     }
 
     @Override
