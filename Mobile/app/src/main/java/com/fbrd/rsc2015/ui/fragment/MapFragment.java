@@ -30,7 +30,7 @@ public class MapFragment extends TabFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        map.load(url);
+//        map.load(url);
     }
 
     public void setUrl(String url) {

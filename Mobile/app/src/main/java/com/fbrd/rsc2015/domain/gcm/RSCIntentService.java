@@ -6,8 +6,10 @@ import com.dmacan.lightandroidgcm.listener.OnGcmMessageReceivedListener;
 import com.example.loginmodule.model.bus.ZET;
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.domain.model.event.GcmMessageEvent;
+import com.fbrd.rsc2015.ui.activity.GameActivity;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
@@ -54,21 +56,28 @@ public class RSCIntentService extends GcmIntentService {
         Log.i("DAM", "GCM Action: " + action);
         Log.i("DAM", "GCM Data: " + data);
         Log.i("DAM", "GCM Message: " + message);
-        ZET.post(new GcmMessageEvent(action, data, message));
+        GcmMessageEvent event = new GcmMessageEvent(action, data, message);
+        ZET.post(event);
         if (action.equals("8")) {
-            notification(intent);
+            notification(event);
         }
     }
 
-    private void notification(Intent data) {
+    private void notification(GcmMessageEvent event) {
         // Here you can add your own notification handling. Example below:
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(android.R.drawable.ic_menu_add) // notification icon
                 .setContentTitle("New team") // title for notification
-                .setContentText(data.getStringExtra("Click to join game")) // message for notification
+                .setContentText(event.getMessage()) // message for notification
                 .setAutoCancel(true); // clear notification after click
+
+        Intent intent = new Intent(getBaseContext(), GameActivity.class);
+        intent.putExtra("teamId", event.getData().getTeamId());
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        mBuilder.setContentIntent(pi);
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(0, mBuilder.build());
+
     }
 
 }

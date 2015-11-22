@@ -1,7 +1,10 @@
 package com.fbrd.rsc2015.app.di.module;
 
+import com.fbrd.lightandroidgoodies.SpeechRecognizer;
 import com.fbrd.rsc2015.domain.interactor.GameInteractor;
+import com.fbrd.rsc2015.domain.interactor.PairingInteractor;
 import com.fbrd.rsc2015.domain.manager.NFCManager;
+import com.fbrd.rsc2015.domain.repository.RSCPreferences;
 import com.fbrd.rsc2015.domain.repository.RSCRepository;
 import com.fbrd.rsc2015.ui.activity.GameActivity;
 import com.fbrd.rsc2015.ui.fragment.MapFragment;
@@ -55,8 +58,18 @@ public class GameModule {
     }
 
     @Provides
-    GameInteractor gameInteractor(RSCRepository.Api api){
+    GameInteractor gameInteractor(RSCRepository.Api api) {
         return new GameInteractor(api);
+    }
+
+    @Provides
+    PairingInteractor pairingInteractor(RSCRepository.Api api, RSCPreferences preferences) {
+        return new PairingInteractor(api, preferences);
+    }
+
+    @Provides
+    SpeechRecognizer recognizer() {
+        return new SpeechRecognizer(view);
     }
 
 }

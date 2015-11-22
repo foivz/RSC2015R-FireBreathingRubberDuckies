@@ -1,5 +1,6 @@
 package com.fbrd.rsc2015.domain.repository;
 
+import com.fbrd.rsc2015.domain.model.response.PairingResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -81,6 +82,10 @@ public class RSCRepository {
 
         @GET("/api/1/games/{id}")
         Observable<GamesResponse> getGame(@Header("Authorization") String token, @Path("id") long gameId);
+
+        @FormUrlEncoded
+        @PUT("/api/1/games/nfc")
+        Observable<PairingResponse> pair(@Header("Authorization") String token, @Field("nfc") String nfc, @Field("gameId") long gameId);
 
     }
 

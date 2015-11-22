@@ -11,6 +11,8 @@ public abstract class TabFragment extends Fragment implements Tab {
 
     private String label;
     private boolean isFocused;
+    private boolean active;
+    private OnActiveListener onActiveListener;
 
     @Override
     public void setLabel(String label) {
@@ -26,4 +28,19 @@ public abstract class TabFragment extends Fragment implements Tab {
     public void onFocusChanged(boolean b) {
         isFocused = b;
     }
+
+    public void setActive(boolean active) {
+        this.active = active;
+        if (onActiveListener != null)
+            onActiveListener.onActive(active);
+    }
+
+    public void setOnActiveListener(OnActiveListener onActiveListener) {
+        this.onActiveListener = onActiveListener;
+    }
+
+    public interface OnActiveListener {
+        void onActive(boolean active);
+    }
+
 }
