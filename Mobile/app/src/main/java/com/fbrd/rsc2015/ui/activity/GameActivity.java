@@ -254,11 +254,12 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP && url != null)) {
             onVoiceCommand();
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN && url != null) {
             openUrl(url);
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }
