@@ -80,8 +80,9 @@ public class NFCManager {
         } catch (IntentFilter.MalformedMimeTypeException e) {
             throw new RuntimeException("Check your mime type.");
         }
-
-        adapter.enableForegroundDispatch(activity, pendingIntent, filters, techList);
+        if(adapter != null){
+            adapter.enableForegroundDispatch(activity, pendingIntent, filters, techList);
+        }
     }
 
     public void stopForegroundDispatch() {

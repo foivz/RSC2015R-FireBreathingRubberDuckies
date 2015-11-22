@@ -10,10 +10,13 @@ import com.fbrd.rsc2015.domain.repository.RSCRepository;
 import com.fbrd.rsc2015.ui.activity.MainActivity;
 import com.fbrd.rsc2015.ui.presenter.MainPresenter;
 import com.fbrd.rsc2015.ui.view.FeedItemView;
+import com.joanzapata.iconify.IconDrawable;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.icons.MaterialDrawerFont;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialize.color.Material;
 
 import javax.inject.Named;
 
@@ -63,7 +66,7 @@ public class MainModule {
                 .withActionBarDrawerToggleAnimated(true)
                 .withHeader(R.layout.nav_header_main)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("What's new"),
+                        new PrimaryDrawerItem().withName("What's new").withIcon(new IconDrawable(view.getApplicationContext())),
                         new PrimaryDrawerItem().withName("My team"),
                         new PrimaryDrawerItem().withName("Game"),
                         new DividerDrawerItem(),
