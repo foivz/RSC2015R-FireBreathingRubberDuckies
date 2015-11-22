@@ -64,7 +64,7 @@ public class MainModule {
                 .withHeader(R.layout.nav_header_main)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("What's new"),
-                        new PrimaryDrawerItem().withName("My team"),
+//                        new PrimaryDrawerItem().withName("My team"),
                         new PrimaryDrawerItem().withName("Game"),
                         new DividerDrawerItem(),
                         new PrimaryDrawerItem().withName("Settings"),

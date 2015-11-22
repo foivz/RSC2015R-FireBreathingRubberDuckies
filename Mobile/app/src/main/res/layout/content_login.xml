@@ -73,26 +73,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/layoutOr"
         android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnSignInGoogle"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
             android:background="@drawable/btn_googleplus"
-            android:drawableLeft="@drawable/google"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"
-            android:text="@string/google_sign_in_button_text"
+            android:text="Use Google"
             android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnSignInFacebook"
-            style="@style/FacebookLoginButton"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:text="Sign in with facebook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_facebook"
+            android:text="Use Facebook"
             android:textAllCaps="true"
             android:textColor="#FFF" />
     </LinearLayout>
