@@ -8,13 +8,8 @@ import com.facebook.CallbackManager;
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.app.di.component.DaggerLoginComponent;
 import com.fbrd.rsc2015.app.di.module.LoginModule;
-import com.fbrd.rsc2015.domain.util.DateTimeHelper;
 import com.fbrd.rsc2015.ui.presenter.LoginPresenter;
 import com.rengwuxian.materialedittext.MaterialEditText;
-
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -34,13 +29,18 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+
     @Bind(R.id.etUsername)
     MaterialEditText etUsername;
+
     @Bind(R.id.etPassword)
     MaterialEditText etPassword;
+
     ProgressDialog progressDialog;
+
     @Inject
     LoginPresenter loginPresenter;
+
     @Inject
     CallbackManager callbackManager;
 
@@ -54,13 +54,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
 
+        /*
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd.MM.yyyy HH:mm:ss");
+        DateTime dt = formatter.parseDateTime("22.11.2015 4:00:00");
 
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss");
-        DateTime dt = formatter.parseDateTime("22.11.2015 1:31:43");
-
-        DateTimeHelper dateTimeHelper = new DateTimeHelper(dt, dt, 126);
+        DateTimeHelper dateTimeHelper = new DateTimeHelper(dt, dt, 120);
         Log.e("TIME", "" + dateTimeHelper.calculateElapsedTime());
-
+*/
 
     }
 
@@ -137,7 +137,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     @OnClick(R.id.open_comms)
-    public void onCommsClicked(){
+    public void onCommsClicked() {
         startActivity(new Intent(this, VoiceChatActivity.class));
     }
 }

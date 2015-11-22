@@ -7,10 +7,6 @@ import org.joda.time.Seconds;
 
 import android.util.Log;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * Created by noxqs on 22.11.15..
  */
@@ -21,6 +17,7 @@ public class DateTimeHelper {
     private DateTime endedAt;
 
     private String finalTime = "";
+
     private int duration;
 
     public DateTimeHelper(DateTime startedAt, DateTime endedAt, int duration) {
@@ -31,23 +28,29 @@ public class DateTimeHelper {
 
     public String calculateElapsedTime() {
         int hours, minutes, seconds;
+        DateTime currDate = new DateTime();
+        String time;
 
-        if(duration > 60){
-            startedAt = startedAt.plusMinutes(duration);
+        startedAt = startedAt.plusMinutes(duration);
+        Log.e("startedAT", "" + startedAt);
+        long startedAtMillis = startedAt.getMillis();
+        long currMillis = currDate.getMillis();
+        long totalMillis = startedAtMillis - currMillis;
+        Log.e("TOTAL", totalMillis + "");
+        long minutesMillis = (totalMillis / 1000) / 60;
+        Log.e("minutesMillis", minutesMillis + "");
+        long secondsMillis = (totalMillis / 1000) - minutesMillis * 60;
+        Log.e("secondsMillis", secondsMillis + "");
+
+        if (duration > 60) {
+            long hoursMillis = minutesMillis / 60;
+            minutesMillis = minutesMillis - hoursMillis * 60;
+            time = hoursMillis + ":" + minutesMillis + ":" + secondsMillis;
+        } else {
+            time = "00:" + minutesMillis + secondsMillis;
         }
-        Date currDate = new Date();
 
-        hours = Hours.hoursBetween(new DateTime(startedAt), new DateTime(currDate)).getHours();
-        finalTime = "" + hours;
-        minutes = Minutes.minutesBetween(new DateTime(startedAt), new DateTime(currDate)).getMinutes();
-        finalTime = ":" + minutes;
-        seconds = Seconds.secondsBetween(new DateTime(startedAt), new DateTime(currDate)).getSeconds();
-        finalTime = ":" + seconds;
-
-        Log.e("FinalTime", finalTime);
-
-        return finalTime;
-
+        return time;
     }
 }
 
