@@ -66,7 +66,7 @@ public class MainModule {
                 .withActionBarDrawerToggleAnimated(true)
                 .withHeader(R.layout.nav_header_main)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("What's new").withIcon(new IconDrawable(view.getApplicationContext())),
+                        new PrimaryDrawerItem().withName("What's new"),
                         new PrimaryDrawerItem().withName("My team"),
                         new PrimaryDrawerItem().withName("Game"),
                         new DividerDrawerItem(),
