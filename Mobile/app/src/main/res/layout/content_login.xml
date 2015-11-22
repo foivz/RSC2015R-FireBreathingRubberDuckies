@@ -12,10 +12,17 @@
     tools:context="com.fbrd.rsc2015.ui.activity.LoginActivity"
     tools:showIn="@layout/activity_login">
 
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="20dp" />
+
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/imgLogo"
         android:hint="@string/lbl_username"
         android:singleLine="true" />
 
@@ -31,12 +38,14 @@
 
     <Button
         android:id="@+id/btnSignIn"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/lbl_sign_in" />
+        android:background="@drawable/btn_default"
+        android:text="@string/lbl_sign_in"
+        android:textColor="@android:color/white" />
 
     <LinearLayout
         android:id="@+id/layoutOr"
