@@ -8,8 +8,13 @@ import com.facebook.CallbackManager;
 import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.app.di.component.DaggerLoginComponent;
 import com.fbrd.rsc2015.app.di.module.LoginModule;
+import com.fbrd.rsc2015.domain.util.DateTimeHelper;
 import com.fbrd.rsc2015.ui.presenter.LoginPresenter;
 import com.rengwuxian.materialedittext.MaterialEditText;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -48,6 +53,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         DaggerLoginComponent.builder().loginModule(new LoginModule(this, this)).build().inject(this);
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
+
+
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss");
+        DateTime dt = formatter.parseDateTime("22.11.2015 1:31:43");
+
+        DateTimeHelper dateTimeHelper = new DateTimeHelper(dt, dt, 126);
+        Log.e("TIME", "" + dateTimeHelper.calculateElapsedTime());
 
 
     }

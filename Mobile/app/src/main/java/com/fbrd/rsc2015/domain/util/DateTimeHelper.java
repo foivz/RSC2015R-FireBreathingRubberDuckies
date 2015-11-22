@@ -29,7 +29,7 @@ public class DateTimeHelper {
         this.duration = duration;
     }
 
-    private String calculateElapsedTime() {
+    public String calculateElapsedTime() {
         int hours, minutes, seconds;
 
         if(duration > 60){
