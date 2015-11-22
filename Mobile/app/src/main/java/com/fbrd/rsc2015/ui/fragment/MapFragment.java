@@ -10,6 +10,7 @@ import com.dmacan.lightandroid.ui.custom.view.SexyWebView;
 import com.fbrd.rsc2015.R;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by david on 21.11.2015..
@@ -19,21 +20,23 @@ public class MapFragment extends TabFragment {
     @Bind(R.id.wvMap)
     SexyWebView map;
 
-    private String url;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_map, null, false);
+        View v = inflater.inflate(R.layout.fragment_map, null, false);
+        ButterKnife.bind(this, v);
+        return v;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setActive(true);
 //        map.load(url);
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void showMap(String url) {
+        map.load(url);
     }
+
 }
