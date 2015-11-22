@@ -1,8 +1,5 @@
 package com.fbrd.rsc2015.domain.model.response;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import com.example.loginmodule.model.response.Response;
 
 import ru.noties.flatten.Flatten;

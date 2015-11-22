@@ -1,13 +1,12 @@
 package com.fbrd.rsc2015.domain.gcm;
 
-import android.content.Intent;
-import android.util.Log;
-
 import com.dmacan.lightandroidgcm.GcmIntentService;
 import com.dmacan.lightandroidgcm.GcmObserver;
 import com.dmacan.lightandroidgcm.listener.OnGcmMessageReceivedListener;
 import com.example.loginmodule.model.bus.ZET;
 import com.fbrd.rsc2015.domain.model.event.GcmMessageEvent;
+
+import android.content.Intent;
 
 /**
  * Created by david on 21.11.2015..

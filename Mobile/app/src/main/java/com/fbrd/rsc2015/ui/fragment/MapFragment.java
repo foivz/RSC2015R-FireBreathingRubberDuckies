@@ -1,14 +1,13 @@
 package com.fbrd.rsc2015.ui.fragment;
 
-import android.app.Fragment;
+import com.dmacan.lightandroid.ui.custom.view.SexyWebView;
+import com.fbrd.rsc2015.R;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.dmacan.lightandroid.ui.custom.view.SexyWebView;
-import com.fbrd.rsc2015.R;
 
 import butterknife.Bind;
 

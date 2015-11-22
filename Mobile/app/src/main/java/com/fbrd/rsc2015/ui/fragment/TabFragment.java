@@ -1,8 +1,8 @@
 package com.fbrd.rsc2015.ui.fragment;
 
-import android.app.Fragment;
-
 import com.dmacan.lightandroid.ui.custom.tabs.Tab;
+
+import android.app.Fragment;
 
 /**
  * Created by david on 21.11.2015..

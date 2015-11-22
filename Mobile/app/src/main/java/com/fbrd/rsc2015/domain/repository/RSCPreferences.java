@@ -1,10 +1,10 @@
 package com.fbrd.rsc2015.domain.repository;
 
-import android.content.Context;
-
 import com.dmacan.lightandroid.domain.util.Preferences;
 import com.dmacan.lightandroid.domain.util.Serializator;
 import com.example.loginmodule.model.entity.User;
+
+import android.content.Context;
 
 import rx.Observable;
 

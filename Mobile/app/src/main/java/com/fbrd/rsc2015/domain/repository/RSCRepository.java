@@ -1,11 +1,12 @@
 package com.fbrd.rsc2015.domain.repository;
 
-import com.example.loginmodule.model.response.RegistrationResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import com.example.loginmodule.model.response.RegistrationResponse;
 import com.fbrd.rsc2015.domain.model.response.CommunicationsResponse;
 import com.fbrd.rsc2015.domain.model.response.FeedResponse;
+import com.fbrd.rsc2015.domain.model.response.GamesResponse;
 import com.fbrd.rsc2015.domain.model.response.LocationResponse;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
@@ -76,6 +77,9 @@ public class RSCRepository {
         @FormUrlEncoded
         @PUT("/api/1/games")
         Observable<LocationResponse> pushLocation(@Header("Authorization") String token, @Field("lat") double lat, @Field("long") double lon, @Field("mapId") long mapId);
+
+        @GET("/api/1/games/{id}")
+        Observable<GamesResponse> getGame(@Header("Authorization") String token, @Field("id") long gameId);
 
     }
 

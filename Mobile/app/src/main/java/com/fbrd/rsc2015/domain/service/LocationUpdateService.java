@@ -4,7 +4,6 @@ import com.fbrd.rsc2015.app.di.component.DaggerServiceComponent;
 import com.fbrd.rsc2015.app.di.module.ServiceModule;
 import com.fbrd.rsc2015.domain.interactor.LocationInteractor;
 import com.fbrd.rsc2015.domain.manager.LocationManager;
-import com.fbrd.rsc2015.domain.model.event.LocationPostEvent;
 
 import android.app.Service;
 import android.content.Intent;

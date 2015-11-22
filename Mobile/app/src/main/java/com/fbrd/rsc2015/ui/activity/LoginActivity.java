@@ -1,12 +1,7 @@
 package com.fbrd.rsc2015.ui.activity;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.widget.Toast;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import com.example.loginmodule.util.GoogleApiUtil;
 import com.facebook.CallbackManager;
@@ -14,9 +9,15 @@ import com.fbrd.rsc2015.R;
 import com.fbrd.rsc2015.app.di.component.DaggerLoginComponent;
 import com.fbrd.rsc2015.app.di.module.LoginModule;
 import com.fbrd.rsc2015.ui.presenter.LoginPresenter;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.rengwuxian.materialedittext.MaterialEditText;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
