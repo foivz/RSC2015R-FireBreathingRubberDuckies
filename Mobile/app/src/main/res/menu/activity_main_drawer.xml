@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Paintball">
+        <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/navFeed"
+                android:icon="@android:drawable/ic_menu_camera"
+                android:title="What's new" />
+            <item
+                android:id="@+id/navTeam"
+                android:icon="@android:drawable/ic_menu_edit"
+                android:title="My Team" />
+            <item
+                android:id="@+id/navGame"
+                android:icon="@android:drawable/ic_menu_edit"
+                android:title="Game" />
+        </group>
+    </item>
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/navSettings"
+                android:icon="@android:drawable/ic_menu_share"
+                android:title="Settings" />
+            <item
+                android:id="@+id/navLogout"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

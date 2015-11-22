@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <tech-data>
+        <tech>android.nfc.tech.Ndef</tech>
+        <tech>com.fbrd.rsc2015.ui.activity.NFCScanActivity</tech>
+    </tech-data>
+
+</resources>

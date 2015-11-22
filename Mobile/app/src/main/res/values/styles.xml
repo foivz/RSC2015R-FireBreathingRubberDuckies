@@ -1,0 +1,47 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="FacebookLoginButton">
+        <item name="android:textSize">@dimen/smallTxtSize</item>
+        <item name="android:drawableLeft">@drawable/facebook_icon</item>
+        <item name="android:background">#5878D0</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <dimen name="smallTxtSize">14sp</dimen>
+
+    <style name="MACEditText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textColorHint">#fff</item>
+
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="met_textColorHint">#fff</item>
+        <item name="met_baseColor">#fff</item>
+        <item name="met_underlineColor">#fff</item>
+        <item name="met_floatingLabelTextColor">#fff</item>
+        <item name="met_primaryColor">#fff</item>
+        <item name="met_errorColor">#fff</item>
+        <item name="met_floatingLabel">normal</item>
+    </style>
+</resources>

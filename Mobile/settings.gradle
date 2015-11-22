@@ -1,0 +1,1 @@
+include ':app', ':lightandroid', ':lightandroid-aws', ':lightandroid-gcm', ':lightandroid-goodies', ':simpl3r', ':usermanagement'

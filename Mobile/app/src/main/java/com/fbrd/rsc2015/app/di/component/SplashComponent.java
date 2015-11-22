@@ -1,0 +1,19 @@
+package com.fbrd.rsc2015.app.di.component;
+
+import com.fbrd.rsc2015.app.di.module.ApiModule;
+import com.fbrd.rsc2015.ui.activity.SplashActivity;
+
+import javax.inject.Singleton;
+
+import dagger.Component;
+
+/**
+ * Created by david on 21.11.2015..
+ */
+@Component(modules = ApiModule.class)
+@Singleton
+public interface SplashComponent {
+
+    void inject(SplashActivity activity);
+
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">916889011691947</string>
+    <integer name="splash_time">0</integer>
+    <integer name="location_refresh">600000</integer>
+</resources>
