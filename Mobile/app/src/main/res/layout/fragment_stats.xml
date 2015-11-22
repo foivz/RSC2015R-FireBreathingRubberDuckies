@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:orientation="vertical">
+    android:background="#fff"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/txtGameName"
@@ -26,10 +26,10 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="35sp"
             android:id="@+id/timerHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
             tools:text="00" />
 
         <TextView
@@ -39,10 +39,10 @@
             tools:text=":" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="35sp"
             android:id="@+id/timerMinutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
             tools:text="00" />
 
         <TextView
@@ -52,10 +52,10 @@
             tools:text=":" />
 
         <TextView
+            android:id="@+id/timerSeconds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="35sp"
-            android:id="@+id/timerSeconds"
             tools:text="00" />
 
     </LinearLayout>
@@ -77,15 +77,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
+                android:text="My team"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="My team" />
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
                 android:id="@+id/myTeamAlive"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
                 tools:text="Alive players : 3" />
 
         </LinearLayout>
@@ -106,14 +106,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
+                android:text="Enemy team"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="Enemy team" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/enemyTeamAlive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/enemyTeamAlive"
                 tools:text="Alive players : 3" />
 
         </LinearLayout>

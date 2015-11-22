@@ -68,6 +68,7 @@ public class LoginInteractorFacebookImpl implements LoginInteractorFacebook {
         User user = new User();
         GetUserResponse.Data data = response.getData().get(0);
         user.setId(data.getId());
+        user.setImage(data.getAvatar());
         user.setEmail(data.getEmail());
         user.setUsername(data.getUsername());
         user.setToken(token);

@@ -45,6 +45,7 @@ public class StatsFragment extends TabFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setActive(true);
     }
 
     public void setGameName(String name) {

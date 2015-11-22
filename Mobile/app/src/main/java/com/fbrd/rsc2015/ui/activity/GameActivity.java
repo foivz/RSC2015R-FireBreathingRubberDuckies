@@ -81,6 +81,7 @@ public class GameActivity extends AppCompatActivity {
     SpeechRecognizer recognizer;
     @Bind(R.id.fab)
     FloatingActionButton fab;
+    private long teamId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +91,6 @@ public class GameActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         DaggerGameComponent.builder().gameModule(new GameModule(this)).build().inject(this);
         setupTabs();
-        startService(new Intent(this, LocationUpdateService.class));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -115,9 +115,10 @@ public class GameActivity extends AppCompatActivity {
 //        wvChat.setVisibility(View.VISIBLE);
         tabs.setVisibility(View.VISIBLE);
         fab.setVisibility(View.VISIBLE);
-        adapter.clearTabs();
+        nfcFragment.setLabel("Team");
         adapter.addTabs(Arrays.asList(statsFragment, mapFragment));
         pager.setAdapter(adapter);
+//        pager.setCurrentItem(1);
         tabs.setupWithViewPager(pager);
     }
 
@@ -156,6 +157,7 @@ public class GameActivity extends AppCompatActivity {
                 Toast.makeText(GameActivity.this, "You are going out of bounds", Toast.LENGTH_LONG).show();
                 break;
             case "8":
+                this.teamId = event.getData().getTeamId();
                 nfcFragment.askForPairing();
                 pairNfc();
                 break;
@@ -166,9 +168,9 @@ public class GameActivity extends AppCompatActivity {
             case "9":
                 break;
             case "10":
+                startService(new Intent(this, LocationUpdateService.class));
                 gameInteractor.fetchGames(preferences.getToken(), preferences.preferences().getLong("GameId", 0));
                 openUrl("http://95.85.26.58:6767/" + event.getData().getUrl());
-//                wvChat.load("http://95.85.26.58:6767/");
                 break;
         }
     }
@@ -181,9 +183,12 @@ public class GameActivity extends AppCompatActivity {
             command = CommandParser.compare(command);
             switch (command) {
                 case CommandParser.MAP:
-                    pager.setCurrentItem(1);
+                    pager.setCurrentItem(2);
                     break;
                 case CommandParser.STATS:
+                    pager.setCurrentItem(1);
+                    break;
+                case "team":
                     pager.setCurrentItem(0);
                     break;
             }
