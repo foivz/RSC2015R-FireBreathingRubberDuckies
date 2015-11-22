@@ -91,7 +91,6 @@ public class GameActivity extends AppCompatActivity {
         DaggerGameComponent.builder().gameModule(new GameModule(this)).build().inject(this);
         setupTabs();
         startService(new Intent(this, LocationUpdateService.class));
-        gameInteractor.fetchGames(preferences.getToken(), 1);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -167,7 +166,8 @@ public class GameActivity extends AppCompatActivity {
             case "9":
                 break;
             case "10":
-                openUrl("http://95.85.26.58:6767/");
+                gameInteractor.fetchGames(preferences.getToken(), preferences.preferences().getLong("GameId", 0));
+                openUrl("http://95.85.26.58:6767/" + event.getData().getUrl());
 //                wvChat.load("http://95.85.26.58:6767/");
                 break;
         }
