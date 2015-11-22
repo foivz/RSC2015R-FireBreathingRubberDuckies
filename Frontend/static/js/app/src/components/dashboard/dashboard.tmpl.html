@@ -1,0 +1,120 @@
+<div class="container-admin">
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <div class="dashboard-header__logo">
+                <p class="dashboard-logo"><span class="logo-capital">C</span>ome<span class="logo-capital">s</span>hoot</p>
+            </div>
+            <div class="dashboard-header__profile">
+                <div class="profile-notif">
+                   
+                </div>
+                <div class="profile-info">
+                    <a href="#" class="profile-info__logout">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="dashboard-nav">
+            <ul class="dashboard-nav__list">
+                <li class="dashboard-nav__list-item dashboard-nav__list-item--back">
+                  <a ui-sref="/dashboard/add/" class="dashboard-nav__home hvr-sweep-to-bottom">Add</a> 
+                </li>
+                <li class="dashboard-nav__list-item" ng-repeat="item in ::vm.navigation">
+                    <a ui-sref="{{::item.url}}" class="dashboard-nav__list-anchor">{{::item.label}}</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="dashboard-details dashboard-details--add">
+            <div class="dashboard-details__info details-info">
+                <div class="details-info__title">
+                    Select area
+                </div>
+                <div class="details-steps">
+                    <span id="details-info__next--inactive" class="details-next  step-current">
+                    1
+                </span>
+                    <span id="details-info__next--first" class="details-next">
+                    2
+                </span>
+                    <span id="details-info__next--second" class="details-next">
+                    3
+                </span>
+                    <span id="details-info__next--third" class="details-next">
+                    4
+                </span>
+                    <span id="details-info__next--forth" class="details-next">
+                    5
+                </span>
+                    <span id="details-info__next--fifth"  class="details-next" ng-click="vm.gameStatus()">
+                    6
+                </span>
+                </div>
+            </div>
+            <div class="map-wrapper">
+                <div class="team-map">
+                    <map></map>
+                </div>
+            </div>
+            <div class="team-wrapper">
+                <div class="dashboard-details__content">
+                    <form method="post" novalidate class="component-form" ng-submit="vm.createTeams(teams)">
+                        <div class="form-element">
+                            <label class="form-element__label" for="team1">Team 1</label>
+                            <input class="form-element__input" ng-model="teams.team1" type="text" name="team1" id="team1" />
+                        </div>
+                        <div class="form-element">
+                            <label class="form-element__label" for="">Team 2</label>
+                            <input class="form-element__input" ng-model="teams.team2" type="text" name="team2" id="team2" />
+                        </div>
+                        <input type="submit" class="teams-submit" value="Create teams">
+                        <p class="teams-next">Team creation completed. Proceed to step 3</p>
+                    </form>
+                </div>
+            </div>
+            <div class="users-wrapper">
+                <li class="users-list__item" ng-repeat="item in vm.users" ng-click="vm.selectUser(item.id)">
+                    <span href="#" class="users-list__element">{{item.name}}</span>
+                    <img class="user-list__avatar" src="{{item.avatar}}" alt="">
+                    <span class="users-list__name">{{item.firstName}}</span>
+                    <span class="users-list__surname">{{item.lastName}}</span>
+                    <span class="users-list__email">{{item.email}}</span>
+                </li>
+            </div>
+            <div class="users-wrapper-team2 users-wrapper">
+                <li class="users-list__item-team2 users-list__item" ng-repeat="item in vm.users" ng-click="vm.selectUserTeam2(item.id)">
+                    <span href="#" class="users-list__element">{{item.name}}</span>
+                    <img class="user-list__avatar" src="{{item.avatar}}" alt="{{item.firstName}}">
+                    <span class="users-list__name">{{item.firstName}}</span>
+                    <span class="users-list__surname">{{item.lastName}}</span>
+                    <span class="users-list__email">{{item.email}}</span>
+                </li>
+            </div>
+            <div class="define-game">
+                <form method="post" novalidate ng-submit="vm.defineGame(game)">
+                <div class="form-element">
+                    <label class="form-element__label" for="team1">Game length</label>
+                    <input type="text" class="form-element__input" ng-model="game.length">
+                </div>
+                <div class="form-element">
+                 <label class="form-element__label" for="team1">Define kill points</label>
+                    <input type="text" class="form-element__input" ng-model="game.killPoints">
+                </div>
+                
+                    <input type="submit" class="teams-submit-down" value="Define game">
+                </form>
+            </div>
+            <div class="start-game">
+                <div class="start-game__status">
+                    <p class="game-inactive" ng-if="!vm.gameActive()">Waiting players to join...</p>
+                    <p class="game-active" ng-if="vm.gameActive()">Game active. Press start game</p>
+                </div>
+                <button class="start" ng-click="" ng-if="vm.gameActive()">Start game</button>
+            </div>
+            <div class="rtc-wrapper">
+                <iframe src="" frameborder="0">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>

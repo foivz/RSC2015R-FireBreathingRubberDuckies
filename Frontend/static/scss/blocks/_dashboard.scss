@@ -1,0 +1,316 @@
+.container-admin {
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard {
+    &-header {
+        overflow: hidden;
+    }
+    height:100%;
+}
+
+.dashboard-header {
+    background: $dark-purple;
+    position: fixed;
+    width: 100%;
+    @include box-shadow(rgba(61, 61, 61, 0.63), 0px, 2px, 5px, -1px);
+    height: 65px;
+    padding-top: 25px;
+    z-index: 10;
+    &__logo {
+        @include span(3);
+        @include push(1);
+    }
+    &__profile {
+        @include span(5 of 12);
+        @include push(2);
+    }
+}
+
+.profile-notif {
+    @include push(2 of 5);
+    @include span(1 of 5);
+}
+
+.profile-info {
+    @include push(1 of 5);
+    @include span(1 of 5 last);
+}
+
+.dashboard-nav {
+    @include span(2);
+    height: 100%;
+    position: fixed;
+    background: $light-gray;
+    &__home {
+        width: 75%;
+        margin: 15px auto 0;
+        height: 40px;
+        text-align: center;
+        display: block;
+        border: 1px solid $muted-purple;
+        font-family: $font-pt;
+        @include font-size(11px, 14px);
+        text-transform: uppercase;
+        @include spacing(140);
+        color: $muted-purple;
+        font-weight: 700;
+        padding-top: 13px;
+        background: transparent;
+    }
+}
+
+.dashboard-nav__list {
+    width: 100%;
+    top: 70px;
+    position: relative;
+    &-item {
+        width: 100%;
+        height: 70px;
+        border-top: 1px solid $border-gray;
+        position: relative;
+        overflow: hidden;
+        &:last-child {
+            border-bottom: 1px solid $border-gray;
+        }
+        &--back {
+            height: 80px;
+            padding-top: 5px;
+            &:hover {
+                border-left: 0;
+            }
+        }
+    }
+    &-anchor {
+        font-family: $font-pt;
+        display: block;
+        width: 100%;
+        color: $muted-purple;
+        height: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        @include font-size(11px, 30px);
+        @include spacing(140);
+        padding-top: 23px;
+        @include animation(background);
+        &:hover {
+            background: darken($light-gray, 4%);
+            border-left: 4px solid $dark-purple;
+            padding-right: 4px;
+        }
+    }
+}
+
+.dashboard-details {
+    position: relative;
+    @include push(2);
+    height: 100%;
+    padding: 40px;
+    top: 50px;
+    &__content {
+        height: 100%;
+        margin-top: 60px;
+        overflow: hidden;
+        @include span(7);
+    }
+}
+
+.details-info {
+    padding-bottom: 10px;
+    border-bottom: 1px solid $border-gray;
+    height: 40px;
+    &__title {
+        text-transform: uppercase;
+        font-weight: 700;
+        @include spacing(140);
+        @include font-size(14px, 30px);
+        color: $muted-purple;
+        font-family: $font-pt;
+    }
+}
+
+.map-wrapper {
+    padding: 30px 0 0;
+    height: 90%;
+    width: 100%;
+}
+
+.team-map {
+    width: 100%;
+    height: 100%;
+}
+
+.rtc-wrapper {
+    display: none;
+}
+
+.users-wrapper-team2 {
+    display: none;
+}
+
+.start-game {
+    display: none;
+}
+
+.define-game {
+    display: none;
+}
+
+.profile-info {
+    &__logout {
+        color: white;
+        text-transform: uppercase;
+        font-family: $font-pt;
+        @include font-size(16px, 16px);
+    }
+}
+
+.dashboard-logo {
+    text-transform: uppercase;
+    color: white;
+    text-transform: uppercase;
+    font-family: $font-pt;
+    @include font-size(16px, 16px);
+    @include spacing(120);
+}
+
+.logo-capital {
+    @include font-size(20px, 18px);
+    font-weight: 700;
+}
+.details-steps{
+    float:right;
+    height:45px;
+    position:relative;
+    bottom:20px;
+   width:200px;
+}
+.details-next{
+    width:25px;
+     display:inline-block;
+    background:$light-gray;
+    text-align:center;
+    font-family:$font-pt;
+    color:$dark-gray;
+    padding:3px 7px;
+    text-align:center;
+    margin-right:5px;
+    &:hover{
+        cursor:pointer;
+    }
+}
+.step-current{
+    background:#AC1437;
+    color:white;
+}
+.team-wrapper{
+    display:none;
+}
+
+.teams-submit,.teams-submit-down{
+    clear:both;
+    display:block;
+    @include span(5 of 12);
+    height:40px;
+    color:white;
+    font-family:$font-pt;
+    text-transform:uppercase;
+    text-align:center;
+    background:#0C1428;
+    border:none;
+    @include animation(background);
+    cursor:pointer;
+    &:hover{
+        background:$dark-purple;
+    }
+
+}
+.teams-next{
+    clear:both;
+    display:none;
+    font-family:$font-pt;
+    @include font-size(16px,18px);
+    color:#AC1437;
+    padding-top:10px;
+}
+.users-wrapper{
+    width:100%;
+    height:100%;
+    padding-top:30px;
+}
+.users-list__item{
+    @include span(3 of 12);
+    height:240px;
+    background:$light-gray;
+    margin-bottom:50px;
+    list-style:none;
+    &:hover{
+    cursor:pointer;
+    outline:1px solid $dark-purple;
+    }
+}
+.user-list__avatar{
+    max-width:100%;
+    display:block;
+    color:$dark-gray;
+    font-size:18px;
+    line-height:18px;
+    margin-bottom:10px;
+}
+.users-list__name{
+    max-width:100%;
+    display:block;
+    color:$dark-gray;
+    font-size:22px;
+    line-height:18px;
+    margin-bottom:10px;
+    display:inline-block;
+    text-transform:uppercase;
+    padding-left:30px;
+
+}
+.users-list__surname{
+    max-width:100%;
+    display:block;
+    color:$dark-gray;
+    font-size:22px;
+    line-height:18px;
+    margin-bottom:10px;
+    text-transform:uppercase;
+    padding-left:30px;
+}
+.users-list__email{
+    max-width:100%;
+    display:block;
+    color:$dark-gray;
+    font-size:18px;
+    line-height:18px;
+    margin-bottom:10px;
+    padding-left:30px;
+}
+.define-game{
+    padding-top:38px;
+}
+.game-inactive{
+    margin-top:20px;
+    color:$dark-gray;
+    font-family:$font-pt;
+    text-transform:uppercase;
+}
+.start{
+    margin-top:10px;
+    width:80px;
+    height:35px;
+    color:white;
+    background:$muted-purple;
+      font-family:$font-pt;
+    text-transform:uppercase;
+    padding-top:5px;
+    font-size:16px;
+}
+.rtc-wrapper{
+    height:500px;
+
+}
