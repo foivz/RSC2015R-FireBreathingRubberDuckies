@@ -23,8 +23,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.imgAvatar)
-    ImageView imgAvatar;
     @Bind(R.id.etUsername)
     MaterialEditText etUsername;
     @Bind(R.id.etPassword)
@@ -44,6 +42,13 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        try{
+            getSupportActionBar().setTitle("Register an account");
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
         AppServiceImpl service = new AppServiceImpl("http://firebreathingrubberduckies.azurewebsites.net/");
         RegistrationInteractor interactor = new RegistrationInteractorImpl(service.getAppService());
         registrationPresenter = new RegistrationPresenter(this,interactor, this);

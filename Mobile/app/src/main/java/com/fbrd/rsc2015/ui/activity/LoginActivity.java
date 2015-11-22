@@ -2,6 +2,7 @@ package com.fbrd.rsc2015.ui.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -53,7 +54,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         DaggerLoginComponent.builder().loginModule(new LoginModule(this, this)).build().inject(this);
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-        fab.setImageDrawable(new IconDrawable(this, SimpleLineIconsIcons.icon_user_follow).colorRes(android.R.color.white).actionBarSize());
+        fab.setImageDrawable(new IconDrawable(this, SimpleLineIconsIcons.icon_user_follow).colorRes(R.color.primary_dark).actionBarSize());
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(android.R.color.white)));
         /*
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd.MM.yyyy HH:mm:ss");
         DateTime dt = formatter.parseDateTime("22.11.2015 4:00:00");

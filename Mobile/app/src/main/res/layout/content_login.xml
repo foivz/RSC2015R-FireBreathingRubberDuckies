@@ -14,6 +14,7 @@
 
     <ImageView
         android:id="@+id/imgLogo"
+        android:src="@drawable/chl"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginBottom="20dp" />
@@ -24,7 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgLogo"
         android:hint="@string/lbl_username"
-        android:singleLine="true" />
+        android:singleLine="true"
+        style="@style/MACEditText"
+        app:met_underlineColor="#FFF"
+        />
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/etPassword"
@@ -34,7 +38,9 @@
         android:layout_marginTop="10dp"
         android:hint="@string/lbl_password"
         android:inputType="textPassword"
-        android:singleLine="true" />
+        android:singleLine="true"
+        style="@style/MACEditText"
+        app:met_underlineColor="#FFF"/>
 
     <Button
         android:id="@+id/btnSignIn"
@@ -43,15 +49,17 @@
         android:layout_below="@+id/etPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/btn_default"
         android:text="@string/lbl_sign_in"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/primary_dark" />
 
     <LinearLayout
         android:id="@+id/layoutOr"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/btnSignIn"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_margin="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -60,12 +68,13 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="#20000000" />
+            android:background="#fff" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:textColor="#FFF"
             android:layout_weight="0"
             android:text="or" />
 
@@ -73,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="#20000000" />
+            android:background="#fff" />
 
     </LinearLayout>
 

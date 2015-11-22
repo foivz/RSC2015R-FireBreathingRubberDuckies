@@ -9,4 +9,7 @@
     <color name="google_plus_dark">#ffb23629</color>
     <color name="facebook_default">#5878D0</color>
     <color name="facebook_light">#6a85d1</color>
+    <color name="default_light">#ababab</color>
+    <color name="lightlightprimary">#a93c55</color>
+    <color name="lightdarkprimary">#b45269</color>
 </resources>
